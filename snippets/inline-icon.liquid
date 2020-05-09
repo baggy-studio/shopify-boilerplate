@@ -1,0 +1,9 @@
+<span class="inline-icon {{ svg | handelize }} {% if class != blank %} {{ class }} {% endif %}">
+  {% include svg %}
+
+  {% if alt != blank %}
+    <span class="visually-hidden">
+      {{ alt }}
+    </span>
+  {% endif %}
+</span>

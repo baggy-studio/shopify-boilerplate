@@ -1,0 +1,137 @@
+{% assign logo_position = section.settings.logo_position %}
+
+<div class="container relative p-16 h-80 flex flex-row justify-between items-center">
+  <a href="/" id="logo" class="{% unless logo_position == 'left' %} abs-c {% endunless %} w-80">
+    {% include 'inline-icon' with svg: 'icon-logo.svg', alt: shop_title, class: 'logo__main' %}
+  </a>
+  <button class="hamburger reset-input md:hidden" type="button">
+    <span class="hamburger-box">
+      <span class="hamburger-inner"></span>
+    </span>
+  </button>
+
+  <div class="nav--actions flex flex-row items-center">
+    {% if section.settings.show_currency %}
+      <div id="currencyPicker">
+        {% form 'currency' %}
+          {{ form | currency_selector: class: 'reset-input', id: 'Submit'  }}
+        {% endform %}
+      </div>
+    {% endif %}
+    {% if section.settings.show_search %}
+      <a href="/search" class="inline-block w-24 mr-12">
+        {% include 'inline-icon' with svg: 'icon-search.svg' %}
+      </a>
+    {% endif %}
+    {% if shop.customer_accounts_enabled %}
+      <a href="/account" class="inline-block w-24 mr-12">
+        {% include 'inline-icon' with svg: 'icon-account.svg' %}
+      </a>
+    {% endif %}
+    <a href="/cart" id="cart_button" class="inline-block w-24">
+      {% if cart.item_count == 0 %}
+        {% include 'inline-icon' with svg: 'icon-cart-empty.svg' %}
+      {% else %}
+        {% include 'inline-icon' with svg: 'icon-cart-filled'.svg %}
+      {% endif %}
+    </a>
+  </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Header Bar",
+    "class": "header__bar",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Settings"
+      },
+      {
+        "type": "select",
+        "id": "logo_position",
+        "label": "Logo Position",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "center", "label": "Centre" }
+        ],
+        "default": "center"
+      },
+      {
+        "type": "checkbox",
+        "id": "use_transparent",
+        "label": "Use Transparent Header",
+        "info": "Before the user scrolls, the header will have a transparent background.",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Actions"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_currency",
+        "label": "Show Currency Picker",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "show_search",
+        "label": "Show Search",
+        "default": true
+      },
+      {
+        "type": "header",
+        "content": "Links"
+      },
+      {
+        "type": "select",
+        "id": "nest_mode",
+        "label": "Nested Link Style",
+        "options": [
+          { "value": "dropdown", "label": "Dropdown" },
+          { "value": "sidebar", "label": "Sidebar" }
+        ],
+        "info": "Choose how nested links should be displayed",
+        "default": "dropdown"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "left_nav",
+        "name": "Left Navigation",
+        "settings": [
+          {
+            "type": "link_list",
+            "id": "links",
+            "label": "Nav Links"
+          }
+        ]
+      },
+      {
+        "type": "right_nav",
+        "name": "Right Navigation",
+        "settings": [
+          {
+            "type": "link_list",
+            "id": "links",
+            "label": "Nav Links"
+          }
+        ]
+      },
+      {
+        "type": "center_nav",
+        "name": "Center Navigation",
+        "settings": [
+          {
+            "type": "link_list",
+            "id": "links",
+            "label": "Nav Links"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}
