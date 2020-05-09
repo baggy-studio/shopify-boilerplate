@@ -28,6 +28,7 @@
   },
   "dependencies": {
     "jquery": "^3.5.1",
-    "tailwindcss": "^1.4.6"
+    "tailwindcss": "^1.4.6",
+    "typeface-roboto-mono": "0.0.75"
   }
 }

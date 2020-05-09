@@ -1,30 +1,45 @@
 {% assign logo_position = section.settings.logo_position %}
+{% assign main_position = section.settings.main_nav_position %}
 
-<div class="container relative p-16 h-80 flex flex-row justify-between items-center">
-  <a href="/" id="logo" class="{% unless logo_position == 'left' %} abs-c {% endunless %} w-80">
+<div class="container relative p-16 md:p-32 h-80 flex flex-row justify-between items-center">
+  <a href="/" id="logo" class="{% if logo_position == 'center' %} abs-c {% else %} order-first {% endif %} w-80">
     {% include 'inline-icon' with svg: 'icon-logo.svg', alt: shop_title, class: 'logo__main' %}
   </a>
-  <button class="hamburger reset-input md:hidden" type="button">
+  <button class="hamburger reset-input order-first md:hidden" type="button">
     <span class="hamburger-box">
       <span class="hamburger-inner"></span>
     </span>
   </button>
 
-  <div class="nav--actions flex flex-row items-center">
+  <div class="nav--links hidden md:block {% if main_position == 'left' %} order-first {% elsif main_position == 'center' %} abs-c {% elsif main_position == 'right' %} order-9 {% endif %}">
+    <ul class="flex flex-row items-center">
+      {% for link in linklists[section.settings.main_menu].links %}
+        <li class="inline-block md:mx-8 lg:mx-16 {% if main_position == 'left' %} first:ml-0 {% endif %}">
+          {% if link.levels == 0 %}
+            <a href="{{ link.url }}">{{ link.title }}</a>
+          {% else %}
+            <a href="{{ link.url }}">{{ link.title }} >></a>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="nav--actions order-last flex flex-row items-center">
     {% if section.settings.show_currency %}
-      <div id="currencyPicker">
+      <div id="currencyPicker" class="mr-12 hidden md:block md:mr-16">
         {% form 'currency' %}
-          {{ form | currency_selector: class: 'reset-input', id: 'Submit'  }}
+          {{ form | currency_selector: class: 'select h-32 currencyPicker', id: 'Submit' }}
         {% endform %}
       </div>
     {% endif %}
     {% if section.settings.show_search %}
-      <a href="/search" class="inline-block w-24 mr-12">
+      <a href="/search" class="inline-block w-24 mr-12 md:mr-16">
         {% include 'inline-icon' with svg: 'icon-search.svg' %}
       </a>
     {% endif %}
     {% if shop.customer_accounts_enabled %}
-      <a href="/account" class="inline-block w-24 mr-12">
+      <a href="/account" class="inline-block w-24 mr-12 md:mr-16">
         {% include 'inline-icon' with svg: 'icon-account.svg' %}
       </a>
     {% endif %}
@@ -87,6 +102,22 @@
         "content": "Links"
       },
       {
+        "type": "link_list",
+        "id": "main_menu",
+        "label": "Main Menu"
+      },
+      {
+        "type": "select",
+        "id": "main_nav_position",
+        "label": "Main Menu Position",
+        "options": [
+          { "value": "left", "label": "Left" },
+          { "value": "right", "label": "Right" },
+          { "value": "center", "label": "Center" }
+        ],
+        "default": "left"
+      },
+      {
         "type": "select",
         "id": "nest_mode",
         "label": "Nested Link Style",
@@ -96,41 +127,6 @@
         ],
         "info": "Choose how nested links should be displayed",
         "default": "dropdown"
-      }
-    ],
-    "blocks": [
-      {
-        "type": "left_nav",
-        "name": "Left Navigation",
-        "settings": [
-          {
-            "type": "link_list",
-            "id": "links",
-            "label": "Nav Links"
-          }
-        ]
-      },
-      {
-        "type": "right_nav",
-        "name": "Right Navigation",
-        "settings": [
-          {
-            "type": "link_list",
-            "id": "links",
-            "label": "Nav Links"
-          }
-        ]
-      },
-      {
-        "type": "center_nav",
-        "name": "Center Navigation",
-        "settings": [
-          {
-            "type": "link_list",
-            "id": "links",
-            "label": "Nav Links"
-          }
-        ]
       }
     ]
   }

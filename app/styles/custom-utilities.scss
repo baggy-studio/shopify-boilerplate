@@ -7,29 +7,28 @@
   clip: rect(1px, 1px, 1px, 1px);
 }
 
-/* To do: make these tailwind-friendly and set up autoprefixer if not already */
-
-.reset-input {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  border-radius: 0;
-  width: auto;
-  margin: 0;
-  padding: 0;
-  line-height: normal;
-  -webkit-font-smoothing: inherit;
-  -moz-osx-font-smoothing: inherit;
-  text-align: left;
+@responsive {
+  .abs-c {
+    @apply absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  .abs-l {
+    @apply absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+  
+  .abs-r {
+    @apply absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  }
 }
 
-.abs-c {
-  @apply absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
+
+

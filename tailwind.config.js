@@ -7,7 +7,7 @@ module.exports = {
   ],
   theme: {
     fontFamily: {
-      'body': ['"Founders Grotesk"', 'sans-serif']
+      'body': ['"Roboto Mono"', 'sans-serif']
     },
     colors: {
       transparent: 'transparent',
@@ -39,6 +39,9 @@ module.exports = {
       160: '10rem'
     }
   },
-  variants: {},
+  variants: {
+    padding: ['responsive', 'first', 'last'],
+    margin: ['responsive', 'first', 'last']
+  },
   plugins: [],
 }

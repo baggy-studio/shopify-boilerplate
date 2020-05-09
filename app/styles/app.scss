@@ -1,7 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap');
+
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "./custom-components.scss";
 @import "tailwindcss/utilities";
 @import "./custom-utilities.scss";
 
-@import './components/hamburger.scss';
+@import './styleguide.scss';
+
+@import './modules/currencyPicker.scss';
+@import './modules/hamburger.scss';

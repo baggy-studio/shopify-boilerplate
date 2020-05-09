@@ -1,0 +1,18 @@
+.border-std {
+  @apply border;
+  @apply border-solid;
+  @apply border-black;
+  @apply rounded-none;
+}
+
+.select {
+  @apply appearance-none;
+  @apply border-std;
+  @apply p-8;
+}
+
+option {
+  @apply p-0;
+  @apply whitespace-normal;
+  min-height: unset;
+}
