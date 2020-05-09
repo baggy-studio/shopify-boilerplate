@@ -7,6 +7,10 @@
   clip: rect(1px, 1px, 1px, 1px);
 }
 
+.translateY-neg1 {
+  transform: translateY(-1px);
+}
+
 @responsive {
   .abs-c {
     @apply absolute;
