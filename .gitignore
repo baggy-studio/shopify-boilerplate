@@ -28,3 +28,6 @@ Temporary Items
 *.env
 variables
 node_modules
+
+## Mix ##
+assets/*.**
