@@ -22,9 +22,5 @@
       </li>
     {% endfor %}
   </ul>
-  <div id="currencyPicker" class="mt-32">
-    {% form 'currency' %}
-      {{ form | currency_selector: class: 'select h-32 bg-transparent relative z-50 currencyPicker', id: 'Submit' }}
-    {% endform %}
-  </div>
+  {% include 'currency-picker' with class: 'mt-32' %}
 </div>

@@ -16,11 +16,7 @@
 
   <div class="nav--actions z-40 order-last flex flex-row items-center">
     {% if section.settings.show_currency %}
-      <div id="currencyPicker" class="mr-12 hidden md:block md:mr-32">
-        {% form 'currency' %}
-          {{ form | currency_selector: class: 'select h-32 bg-transparent relative z-50 currencyPicker', id: 'Submit' }}
-        {% endform %}
-      </div>
+      {% include 'currency-picker' with class: 'mr-12 hidden md:block md:mr-32' %}
     {% endif %}
     {% if section.settings.show_search %}
       <a href="/search" class="inline-block w-24 mr-12 md:mr-16">
