@@ -52,7 +52,8 @@ module.exports = {
   },
   variants: {
     padding: ['responsive', 'first', 'last'],
-    margin: ['responsive', 'first', 'last']
+    margin: ['responsive', 'first', 'last'],
+    borderWidth: ['responsive', 'first', 'last']
   },
   plugins: [],
 }

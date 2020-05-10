@@ -25,7 +25,8 @@ $outer-width: $inner-width + ($outer-padding * 2);
   background-color: transparent;
   border: 0;
   margin: 0;
-  overflow: visible; 
+  overflow: visible;
+  outline: none;
 }
 
 .hamburger:hover {
@@ -39,7 +40,7 @@ $outer-width: $inner-width + ($outer-padding * 2);
 .hamburger.is-active .hamburger-inner,
 .hamburger.is-active .hamburger-inner::before,
 .hamburger.is-active .hamburger-inner::after {
-  background-color: $bar-color; 
+  background-color: $bar-color;
 }
 
 .hamburger-box {
@@ -57,7 +58,7 @@ $outer-width: $inner-width + ($outer-padding * 2);
   transition-timing-function: cubic-bezier(0.55, 0.055, 0.675, 0.19); 
 }
 
-.hamburger.is-active .hambuger-inner {
+.hamburger.is-active .hamburger-inner {
   transform: rotate(45deg);
   transition-delay: 0.12s;
   transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1); 

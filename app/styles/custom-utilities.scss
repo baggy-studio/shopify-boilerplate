@@ -11,6 +11,10 @@
   transform: translateY(-1px);
 }
 
+.flip-h {
+  transform: rotate(180deg);
+}
+
 @responsive {
   .abs-c {
     @apply absolute;

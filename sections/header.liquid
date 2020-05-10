@@ -50,7 +50,7 @@
           {% else %}
             <a href="{{ link.url }}" class="js-dropdown-link relative z-20" data-nest="{{ nest_mode }}">
               {{ link.title }}
-              <span class="inline-block w-12 translateY-neg1">
+              <span class="js-arrow inline-block w-12 translateY-neg1">
                 {% include 'inline-icon' with svg: 'icon-arrow-down.svg' %}
               </span>
             </a>
@@ -81,6 +81,8 @@
     </ul>
   </div>
 </div>
+
+{% include 'mobile-menu' with link_list: section.settings.main_menu %}
 
 {% schema %}
   {

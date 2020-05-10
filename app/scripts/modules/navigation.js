@@ -1,17 +1,35 @@
-let desktopNav = {
-  openNav: function($toggle, nestType) {
-    let $dropdown = $toggle.siblings('div.nav--' + nestType)
+let navigation = {
+  openLinks: function($toggle, nestType) {
+    let 
+      $dropdown = $toggle.siblings('div.nav--' + nestType),
+      $arrow = $toggle.find('.js-arrow')
+    ;
     $dropdown.toggleClass('hidden')
+    $arrow.toggleClass('flip-h')
   },
-  init: function($toggle) {
+  openMob: function($hamburger) {
+    $hamburger.toggleClass('is-active')
+    $('.navMenu--mobile').toggleClass('hidden')
+  },
+  init: function() {
+    let 
+      $toggle = $('a.js-dropdown-link'),
+      $hamburger = $('.hamburger')
+    ;
+
     $toggle.on('click', function(event) {
       let nestType = $toggle.attr('data-nest')
       event.preventDefault()
-      desktopNav.openNav($toggle, nestType)
+      navigation.openLinks($toggle, nestType)
+    })
+
+    $hamburger.on('click', function(event) {
+      event.preventDefault()
+      navigation.openMob($hamburger)
     })
   }
 }
 
 $(document).ready(function() {
-  desktopNav.init($('a.js-dropdown-link'))
+  navigation.init()
 })
