@@ -19,7 +19,10 @@ module.exports = {
     },
     container: {
       center: true,
-      padding: '2rem'
+      padding: {
+        default: '1rem',
+        md: '2rem'
+      }
     },
     spacing: {
       0: '0',
@@ -37,7 +40,14 @@ module.exports = {
       96: '6rem',
       104: '6.5rem',
       128: '8rem',
-      160: '10rem'
+      160: '10rem',
+      'header': '6rem'
+    },
+    screens: {
+      'sm': '640px',
+      'md': '768px',
+      'lg': '1024px',
+      'xl': '1281px'
     }
   },
   variants: {
