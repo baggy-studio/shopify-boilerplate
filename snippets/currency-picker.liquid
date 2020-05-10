@@ -1,5 +1,5 @@
-<div class="currency-picker {{ class }}">
-  <select class="currency-picker-select select h-32 bg-transparent relative z-50 currencyPicker" name="currencies">
+<div class="currency-picker {{ class }} select w-72">
+  <select class="currency-picker-select" name="currencies">
     {% assign codes = 'USD,EUR,GBP,CAD,ARS,AUD,BBD,BDT,BSD,BHD,BRL,BOB,BND,BGN,ILS,MMK,KYD,CLP,CNY,COP,CRC,HRK,CZK,DKK,DOP,XCD,EGP,XPF,FJD,GHS,GTQ,GYD,GEL,HKD,HUF,ISK,INR,IDR,NIS,JMD,JPY,JOD,KZT,KES,KWD,LVL,LTL,MXN,MYR,MUR,MDL,MAD,MNT,MZN,ANG,NZD,NGN,NOK,OMR,PKR,PYG,PEN,PHP,PLN,QAR,RON,RUB,SAR,RSD,SCR,SGD,SYP,ZAR,KRW,LKR,SEK,CHF,TWD,THB,TZS,TTD,TRY,UAH,AED,UYU,VEB,VND,ZMK' | split: ',' %}
     {% assign supported_codes = settings.supported_currencies | split: ' ' %}
     <option value="{{ shop.currency }}" selected="selected">{{ shop.currency }}</option>
@@ -9,4 +9,5 @@
       {% endif %}
     {% endfor %}
   </select>
+  {% include 'inline-icon' with svg: 'icon-arrow-down.svg' class: 'absolute right-8 top-16 w-12' %}
 </div>

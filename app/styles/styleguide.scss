@@ -6,13 +6,23 @@
 }
 
 .select {
-  @apply appearance-none;
-  @apply border-std;
-  @apply p-8;
+  @apply relative;
+
+  select {
+    @apply appearance-none;
+    @apply w-full;
+    @apply bg-transparent;
+    @apply p-8;
+  }
+  
+  option {
+    @apply p-0;
+    @apply whitespace-normal;
+    min-height: unset;
+  }
 }
 
-option {
-  @apply p-0;
-  @apply whitespace-normal;
-  min-height: unset;
+.select-border {
+  @extend .select;
+  @apply border-std;
 }

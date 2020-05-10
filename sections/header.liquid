@@ -1,14 +1,14 @@
 {% assign logo_position = section.settings.logo_position %}
-{% assign main_position = section.settings.main_nav_position %}
+{% assign nav_position = section.settings.main_nav_position %}
 {% assign nest_mode = section.settings.nest_mode %}
 
-<div class="container relative z-30 h-header flex flex-row justify-between items-center">
+<div class="container relative z-30 h-header flex flex-row items-center {% if nav_position != 'left' %} justify-end {% else %} justify-between {% endif %}">
 
-  <a href="/" id="logo" class="z-40 {% if logo_position == 'center' %} abs-c {% else %} order-first {% endif %} w-80">
+  <a href="/" id="logo" class="z-40 w-80 abs-c {% if nav_position == 'left' %} md:abs-c {% else %} md:abs-l md:left-16 md:left-32 {% endif %}">
     {% include 'inline-icon' with svg: 'icon-logo.svg', alt: shop_title, class: 'logo__main' %}
   </a>
 
-  <button class="hamburger reset-input order-first z-40 md:hidden" type="button">
+  <button class="hamburger reset-input abs-l left-16 z-40 md:hidden" type="button">
     <span class="hamburger-box">
       <span class="hamburger-inner"></span>
     </span>
@@ -16,7 +16,7 @@
 
   <div class="nav--actions z-40 order-last flex flex-row items-center">
     {% if section.settings.show_currency %}
-      {% include 'currency-picker' with class: 'mr-12 hidden md:block md:mr-32' %}
+      {% include 'currency-picker' with class: 'mr-12 hidden md:block ' %}
     {% endif %}
     {% if section.settings.show_search %}
       <a href="/search" class="inline-block w-24 mr-12 md:mr-16">
@@ -32,50 +32,13 @@
       {% if cart.item_count == 0 %}
         {% include 'inline-icon' with svg: 'icon-cart-empty.svg' %}
       {% else %}
-        {% include 'inline-icon' with svg: 'icon-cart-filled'.svg %}
+        {% include 'inline-icon' with svg: 'icon-cart-filled.svg' %}
       {% endif %}
     </a>
   </div>
 
-  <div class="nav--links hidden md:block {% if main_position == 'left' %} order-first {% elsif main_position == 'center' %} abs-c {% elsif main_position == 'right' %} order-9 {% endif %}">
-    <ul class="flex flex-row items-center z-50">
-      {% for link in linklists[section.settings.main_menu].links %}
-        <li class="inline-block md:mx-12 lg:mx-16 {% if main_position == 'left' %} first:ml-0 {% endif %}">
-          {% if link.levels == 0 %}
-            <a href="{{ link.url }}" class="z-20 relative">{{ link.title }}</a>
-          {% else %}
-            <a href="{{ link.url }}" class="js-dropdown-link relative z-20" data-nest="{{ nest_mode }}">
-              {{ link.title }}
-              <span class="js-arrow inline-block w-12 translateY-neg1">
-                {% include 'inline-icon' with svg: 'icon-arrow-down.svg' %}
-              </span>
-            </a>
-            {% if nest_mode == 'dropdown' %}
-              <div class="nav--dropdown hidden fixed left-0 bg-bkgmain w-screen py-32">
-                <ul class="container flex flex-row justify-between">
-                  {% for sub_link in link.links %}
-                    <li class="inline-block px-16 first:pl-0 last:pr-0">
-                      <a href="{{ sub_link.url }}">{{ sub_link.title }}</a>
-                    </li>
-                  {% endfor %}
-                </ul>
-              </div>
-            {% elsif nest_mode == 'sidebar' %}
-              <div class="nav--sidebar hidden fixed left-0 z-10 h-screen bg-bkgaccent md:w-1/2 lg:w-1/4 top-0">
-                <ul class="container flex flex-col mt-96">
-                  {% for sub_link in link.links %}
-                    <li class="inline-block py-16">
-                      <a href="{{ sub_link.url }}">{{ sub_link.title }}</a>
-                    </li>
-                  {% endfor %}
-                </ul>
-              </div>
-            {% endif %}
-          {% endif %}
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+  {% include 'header--links' with menu: section.settings.main_menu, position: nav_position %}
+
 </div>
 
 {% include 'mobile-menu' with link_list: section.settings.main_menu %}

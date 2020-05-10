@@ -1,0 +1,39 @@
+<div class="nav--links hidden md:block {% if position == 'left' %} order-first {% elsif position == 'center' %} abs-c {% elsif position == 'right' %} order-9 {% endif %}">
+    <ul class="flex flex-row items-center z-50">
+      {% for link in linklists[menu].links %}
+        <li class="inline-block md:mx-12 lg:mx-16 {% if position == 'left' %} first:ml-0 {% elsif position == 'right' %} last:mr-32 {% endif %}">
+          {% if link.levels == 0 %}
+            <a href="{{ link.url }}" class="z-20 relative">{{ link.title }}</a>
+          {% else %}
+            <a href="{{ link.url }}" class="js-dropdown-link relative z-20" data-nest="{{ nest_mode }}">
+              {{ link.title }}
+              <span class="js-arrow inline-block w-12 translateY-neg1">
+                {% include 'inline-icon' with svg: 'icon-arrow-down.svg' %}
+              </span>
+            </a>
+            {% if nest_mode == 'dropdown' %}
+              <div class="nav--dropdown hidden fixed left-0 bg-bkgmain w-screen py-32">
+                <ul class="container flex flex-row justify-between">
+                  {% for sub_link in link.links %}
+                    <li class="inline-block px-16 first:pl-0 last:pr-0">
+                      <a href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% elsif nest_mode == 'sidebar' %}
+              <div class="nav--sidebar hidden fixed left-0 z-10 h-screen bg-bkgaccent md:w-1/2 lg:w-1/4 top-0">
+                <ul class="container flex flex-col mt-96">
+                  {% for sub_link in link.links %}
+                    <li class="inline-block py-16">
+                      <a href="{{ sub_link.url }}">{{ sub_link.title }}</a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endif %}
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
