@@ -1,4 +1,4 @@
-<div class="nav--links hidden md:block {% if position == 'left' %} order-first {% elsif position == 'center' %} abs-c {% elsif position == 'right' %} order-9 {% endif %}">
+<div class="nav--links hidden md:block {% if position == 'left' %} order-first {% elsif position == 'center' %} order-9 lg:abs-c {% elsif position == 'right' %} order-9 {% endif %}">
     <ul class="flex flex-row items-center z-50">
       {% for link in linklists[menu].links %}
         <li class="inline-block md:mx-12 lg:mx-16 {% if position == 'left' %} first:ml-0 {% elsif position == 'right' %} last:mr-32 {% endif %}">
@@ -12,10 +12,10 @@
               </span>
             </a>
             {% if nest_mode == 'dropdown' %}
-              <div class="nav--dropdown hidden fixed left-0 bg-bkgmain w-screen py-32">
-                <ul class="container flex flex-row justify-between">
+              <div class="nav--dropdown hidden fixed left-0 bg-bkgmain {% unless position == 'center' %} w-screen py-32 {% endunless %}">
+                <ul class="flex {% if position != 'center' %} container flex-row justify-between {% else %} flex-col py-16 {% endif %}">
                   {% for sub_link in link.links %}
-                    <li class="inline-block px-16 first:pl-0 last:pr-0">
+                    <li class="inline-block px-16 {% if position != 'center' %} first:pl-0 last:pr-0 {% else %} my-8 {% endif %} ">
                       <a href="{{ sub_link.url }}">{{ sub_link.title }}</a>
                     </li>
                   {% endfor %}
