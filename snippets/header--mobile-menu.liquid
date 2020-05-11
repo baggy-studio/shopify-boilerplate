@@ -1,7 +1,7 @@
 <div class="navMenu--mobile hidden md:hidden z-20 container bg-bkgaccent fixed w-screen h-screen top-0 left-0 pt-header">
   <ul>
     {% for link in linklists[link_list].links %}
-      <li class="py-16 inline-block w-full border-t last:border-b">
+      <li class="py-16 inline-block w-full border-list">
         {% if link.levels == 0 %}
           <a class="inline-block w-full" href="{{ link.url }}">{{ link.title }}</a>
         {% else %}

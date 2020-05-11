@@ -4,11 +4,17 @@
     <form action="/cart" method="post" novalidate>
       <div>
         {% for item in cart.items %}
-          <div>
-            <div class="line--image">
-              <a href="{{ item.url | within: collections.all }}">
-                {% include 'responsive-image' with image: item.image, max_width: 160, max_height: 300 %}
-              </a>
+          <div class="border-list py-24 flex flex-row">
+            <a href="{{ item.url | within: collections.all }}">
+              {% include 'responsive-image' with image: item.image, max_width: 160, max_height: 220, wrapper_class: 'w-128 h-160', image_class: 'w-full h-full' %}
+            </a>
+            <div class="ml-16">
+              <a href="{{ item.url }}"><h2>{{ item.product.title }}</h2></a>
+              <p>{{ item.variant.title }}</p>
+              <p class="mt-16">{{ item.line_price | money }}</p>
+              <div class="cart--actions">
+                {% include 'cart--quantity-picker' %}
+              </div>
             </div>
           </div>
         {% endfor %}

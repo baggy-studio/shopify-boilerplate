@@ -11,3 +11,11 @@
   @apply bg-black;
   @apply text-white;
 }
+
+.border-list {
+  @apply border-t;
+}
+
+.border-list:last-child {
+  @apply border-b;
+}
