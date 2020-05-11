@@ -1,13 +1,12 @@
-{% assign nav_position = section.settings.main_nav_position %}
 {% assign nest_mode = section.settings.nest_mode %}
 
-<div class="container relative z-30 h-header flex flex-row items-center {% if nav_position != 'left' %} justify-end {% else %} justify-between {% endif %}">
+<div class="container relative z-30 h-header flex flex-row items-center justify-between">
 
-  <a href="/" id="logo" class="z-40 w-80 abs-c {% if nav_position == 'left' %} md:abs-c {% else %} md:abs-l md:left-16 md:left-32 {% endif %}">
+  <a href="/" id="logo" class="z-40 w-80 abs-c">
     {% include 'inline-icon' with svg: 'icon-logo.svg', alt: shop_title, class: 'logo__main' %}
   </a>
 
-  <button class="hamburger reset-input abs-l left-16 z-40 md:hidden" type="button">
+  <button class="hamburger reset-input order-first z-40 md:hidden" type="button">
     <span class="hamburger-box">
       <span class="hamburger-inner"></span>
     </span>
@@ -15,7 +14,7 @@
 
   <div class="nav--actions z-40 order-last flex flex-row items-center">
     {% if section.settings.show_currency %}
-      {% include 'currency-picker' with class: 'mr-12 hidden md:block ' %}
+      {% include 'currency-picker' with class: 'mr-12 hidden md:block' %}
     {% endif %}
     {% if section.settings.show_search %}
       <a href="/search" class="inline-block w-24 mr-12 md:mr-16">
@@ -36,7 +35,7 @@
     </a>
   </div>
 
-  {% include 'header--links' with menu: section.settings.main_menu, position: nav_position %}
+  {% include 'header--nav' with menu: section.settings.main_menu %}
 
 </div>
 
@@ -44,7 +43,7 @@
 
 {% schema %}
   {
-    "name": "Header Bar",
+    "name": "Header",
     "class": "header__bar fixed w-screen inset-0",
     "settings": [
       {
@@ -82,18 +81,6 @@
         "type": "link_list",
         "id": "main_menu",
         "label": "Main Menu"
-      },
-      {
-        "type": "select",
-        "id": "main_nav_position",
-        "label": "Main Menu Position",
-        "options": [
-          { "value": "left", "label": "Left" },
-          { "value": "right", "label": "Right" },
-          { "value": "center", "label": "Center" }
-        ],
-        "default": "left",
-        "info": "Desktop only"
       },
       {
         "type": "select",
