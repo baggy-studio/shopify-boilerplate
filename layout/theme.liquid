@@ -9,13 +9,26 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   {{ content_for_header }} <!-- Header hook for plugins -->
   {{ 'app.css' | asset_url | stylesheet_tag }}
-  {{ 'app.js' | asset_url | script_tag }}
+  {{ 'vendor.js' | asset_url | script_tag }}
 </head>
-<body class="font-body">
+
+{% capture mwc_format %}{{ shop.money_with_currency_format | strip_html | json }}{% endcapture %}
+{% capture money_format %}{{ shop.money_format | strip_html | json }}{% endcapture %}
+
+<body class="font-body"
+  data-show-currencies="{{ settings.show_multiple_currencies }}"
+  data-currency-format="{{ settings.currency_format | default: 'money_with_currency_format' }}"
+  data-shop-currency="{{ shop.currency }}"
+  data-shop-mwc-format="{{ mwc_format | escape }}"
+  data-money-format="{{ money_format | escape }}"
+  data-default-currency="{{ settings.default_currency | default: shop.currency }}"
+>
   {% section 'header' %}
   <main role="main" class="container mt-header">
     {{ content_for_layout }}
   </main>
-  {% include 'currencies' %}
+  {% comment %} {% include 'currencies' %} {% endcomment %}
+  {% comment %} {{ 'jquery.currencies.min.js' | asset_url | script_tag }} {% endcomment %}
+  {{ 'app.js' | asset_url | script_tag }}
 </body>
 </html>
