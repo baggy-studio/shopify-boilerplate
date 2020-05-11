@@ -6,4 +6,5 @@ import 'lazysizes/plugins/bgset/ls.bgset';
 
 import './modules/navigation';
 
+import './components/quantityPicker';
 

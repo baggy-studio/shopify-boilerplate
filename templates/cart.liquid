@@ -13,7 +13,8 @@
               <p>{{ item.variant.title }}</p>
               <p class="mt-16">{{ item.line_price | money }}</p>
               <div class="cart--actions">
-                {% include 'cart--quantity-picker' %}
+                {% assign qp_id = 'updates_' | append: item.id %}
+                {% include 'quantity-picker' with name: 'updates[]', id: qp_id, value: item.quantity, min: 0, max: item.variant.inventory_quantity %}
               </div>
             </div>
           </div>
