@@ -1,0 +1,13 @@
+.button {
+  @apply inline-block;
+  @apply bg-accent;
+  @apply text-black;
+  @apply px-16;
+  @apply py-8;
+  @apply mt-16;
+}
+
+.button:hover {
+  @apply bg-black;
+  @apply text-white;
+}

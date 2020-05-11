@@ -2,6 +2,14 @@ let mix = require('laravel-mix');
 require('mix-tailwindcss');
 require('dotenv').config();
 
+mix.webpackConfig({
+  resolve: {
+    modules: [
+      'node_modules'
+    ]
+  }
+})
+
 mix.autoload({
   jquery: ['$', 'window.$', 'window.jQuery']
 });
