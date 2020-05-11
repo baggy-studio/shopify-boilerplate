@@ -43,12 +43,6 @@
         "label": "Supported currencies",
         "default": "INR GBP CAD USD AUD EUR JPY",
         "info": "Use the country's ISO [currency code](http://www.xe.com/iso4217.php). Separate your currency codes with a space."
-      },
-      {
-        "type": "text",
-        "id": "default_currency",
-        "label": "Default currency",
-        "default": "GBP"
       }
     ]
   }

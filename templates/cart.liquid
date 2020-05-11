@@ -14,7 +14,8 @@
               <p class="mt-16">{{ item.line_price | money }}</p>
               <div class="cart--actions">
                 {% assign qp_id = 'updates_' | append: item.id %}
-                {% include 'quantity-picker' with name: 'updates[]', id: qp_id, value: item.quantity, min: 0, max: item.variant.inventory_quantity %}
+                {% include 'quantity-picker' with name: 'updates[]', id: qp_id, value: item.quantity, min: 0, max: item.variant.inventory_quantity, field_class: 'js-line-quantity' %}
+                <a class="js-remove-line" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">Remove</a>
               </div>
             </div>
           </div>
@@ -24,7 +25,14 @@
   {% else %}
     <p>Your cart is currently empty</p>
     <a href="/" class="button">Continue Shopping</a>
-  {% endif %}  
+  {% endif %}
+
+  <p class="js-cart-currency-note">
+    We process all orders in {{ shop.currency }}. 
+    While the contents of your cart are currently displayed in 
+    <span class="selected-currency"></span>, 
+    the checkout will use {{ shop.currency }} at the current exchange rate.
+  </p>
 </div>
 
 
