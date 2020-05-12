@@ -1,3 +1,5 @@
+// TO DO: Add background on scroll
+
 $(document).ready(function() {
   let navigation = {
     openLinks: function($toggle, nestType) {

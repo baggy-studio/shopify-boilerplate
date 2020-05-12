@@ -27,11 +27,12 @@
       </a>
     {% endif %}
     <a href="/cart" id="cart_button" class="inline-block w-24">
-      {% if cart.item_count == 0 %}
+      <span class="{% if cart.item_count > 0 %} visually-hidden {% endif %}">
         {% include 'inline-icon' with svg: 'icon-cart-empty.svg' %}
-      {% else %}
+      </span>
+      <span class="{% if cart.item_count == 0 %} visually-hidden {% endif %}">
         {% include 'inline-icon' with svg: 'icon-cart-filled.svg' %}
-      {% endif %}
+      </span>
     </a>
   </div>
 

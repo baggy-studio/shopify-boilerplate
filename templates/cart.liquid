@@ -22,17 +22,16 @@
         {% endfor %}
       </div>
     </form>
+    <p class="js-cart-currency-note">
+      We process all orders in {{ shop.currency }}. 
+      While the contents of your cart are currently displayed in 
+      <span class="selected-currency"></span>, 
+      the checkout will use {{ shop.currency }} at the current exchange rate.
+    </p>
   {% else %}
     <p>Your cart is currently empty</p>
     <a href="/" class="button">Continue Shopping</a>
   {% endif %}
-
-  <p class="js-cart-currency-note">
-    We process all orders in {{ shop.currency }}. 
-    While the contents of your cart are currently displayed in 
-    <span class="selected-currency"></span>, 
-    the checkout will use {{ shop.currency }} at the current exchange rate.
-  </p>
 </div>
 
 
