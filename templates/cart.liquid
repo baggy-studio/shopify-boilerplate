@@ -6,7 +6,7 @@
         {% for item in cart.items %}
           <div class="border-list py-24 flex flex-row">
             <a href="{{ item.url | within: collections.all }}">
-              {% include 'responsive-image' with image: item.image, max_width: 160, max_height: 220, wrapper_class: 'w-128 h-160', image_class: 'w-full h-full' %}
+              {% include 'responsive-image' with image: item.image, max_width: 160, max_height: 220, wrapper_class: 'w-128 h-160', image_class: 'w-full h-full object-cover' %}
             </a>
             <div class="ml-16">
               <a href="{{ item.url }}"><h2>{{ item.product.title }}</h2></a>
