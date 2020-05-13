@@ -1,3 +1,18 @@
+{% comment %}
+
+  ––– REQUIRED JS CLASSES –––
+  .js-atc--form – to specify the form
+  .js-atc--variant – to add the id of the selected variant to the form data & send to Shopify
+  .js-atc--price – to update the price based on the selected variant
+  .js-atc--button – to disable the add to cart button if sold out
+
+  ––– REQUIRED JS DATA –––
+  .js-atc--form | data-variants – to pass the variants_with_quantity data to js
+  .js-atc--form select | name={{ option_name }} – to specify the user input that triggers the form change
+
+{% endcomment %}
+
+
 {% assign has_multiple_variants = false %}
 {% if product.variants.size > 1 %}
   {% assign has_multiple_variants = true %}
@@ -9,9 +24,11 @@
 {% endif %}
 
 {% if has_multiple_variants %}
+  {% comment %} This will populate the form with all the variant data we need {% endcomment %}
   {% include 'get-variants-with-quantity-json' with product: product %}
 {% endif %}
 
+{% comment %} Use the first variant as the default {% endcomment %}
 {% assign default_variant = product.selected_or_first_available_variant %}
 
 {% assign can_add_to_cart = false %}
@@ -19,7 +36,7 @@
   {% assign can_add_to_cart = true %}
 {% endif %}
 
-<form id="add-to-cart-form" action="/cart/add" method="post" enctype="multipart/form-data" data-variants="{{ variants_with_quantity_json | url_param_escape }}">
+<form id="add-to-cart-form" class="js-atc--form" action="/cart/add" method="post" enctype="multipart/form-data" data-variants="{{ variants_with_quantity_json | url_param_escape }}">
   {% if has_multiple_options or has_multiple_variants %}
     {% for option in product.options_with_values %}
       {% assign option_name = 'option' | append: option.position %}
@@ -38,12 +55,15 @@
     {% endfor %}
   {% endif %}
 
-  <input class="js-variant-id" type="hidden" name="id" value="{{ default_variant.id }}">
 
+  {% comment %} use name="id" to add the variant data to our form {% endcomment %}
+  <input class="js-atc--variant" type="hidden" name="id" value="{{ default_variant.id }}">
+
+  {% comment %} use name="quantity" to add the quantity data to our form {% endcomment %}
   {% include 'quantity-picker' with name: "quantity", value: 1, min: 1, max: current_variant.inventory_quantity %}
 
-  <button type="submit" name="add" id="add-to-cart-button">
-    <span class="js-price" data-default-price="{{ product.price | money }}">
+  <button type="submit" name="add" id="add-to-cart-button" class="js-atc--button">
+    <span class="js-atc--price" data-default-price="{{ product.price | money }}">
       {{ current_variant.price | money }}
     </span>
     – Add to Cart

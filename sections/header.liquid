@@ -1,3 +1,10 @@
+{% comment %}
+
+  ––– REQUIRED JS CLASSES –––
+  .js-nav--hamburger – to toggle active hamburger class / open mobile menu
+
+{% endcomment %}
+
 {% assign nest_mode = section.settings.nest_mode %}
 
 <div class="container relative z-30 h-header flex flex-row items-center justify-between">
@@ -6,7 +13,7 @@
     {% include 'inline-icon' with svg: 'icon-logo.svg', alt: shop_title, class: 'logo__main' %}
   </a>
 
-  <button class="hamburger reset-input order-first z-40 md:hidden" type="button">
+  <button class="hamburger js-nav--hamburger reset-input order-first z-40 md:hidden" type="button">
     <span class="hamburger-box">
       <span class="hamburger-inner"></span>
     </span>

@@ -1,7 +1,8 @@
 $(document).ready(function() {
     
   let
-    addToCartFormSelector = '#add-to-cart-form',
+    addToCartFormSelector = '.js-atc--form',
+    // Find the input / select with a name including 'option'
     productOptionSelector = addToCartFormSelector + ' [name*=option]'
   ;
 
@@ -20,16 +21,18 @@ $(document).ready(function() {
       let 
         variants = JSON.parse(decodeURIComponent($form.attr('data-variants'))),
         formData = $form.serializeArray(),
-        // Each option in our form has three options built into its data. We need to first reset these.
+        // Our form has three options built into its data. We need to first reset these.
         formOptions = {
-            option1: null,
-            option2: null,
-            option3: null
+          option1: null,
+          option2: null,
+          option3: null
         },
-        $id = $form.find('.js-variant-id'),
+        $id = $form.find('.js-atc--variant'),
         // If no variant is selected, use the default value (as specified in liquid file)
         selectedVariant = $id.val()
       ;
+      
+      console.log(formData)
 
       // When an option in our form is selected, make the name of the option in the data match up with the label that our customers see.
       $.each(formData, function(index, item ) {
@@ -54,8 +57,8 @@ $(document).ready(function() {
       let 
         $form = $(this),
         canAddToCart = selectedVariant.inventory_quantity > 0,
-        $id = $form.find('.js-variant-id'),
-        $addToCartButton = $form.find('#add-to-cart-button')
+        $id = $form.find('.js-atc--variant'),
+        $addToCartButton = $form.find('.js-atc--button')
       ;
         
       if(canAddToCart) {

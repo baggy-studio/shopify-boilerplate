@@ -5,6 +5,7 @@ import 'lazysizes/plugins/rias/ls.rias';
 import 'lazysizes/plugins/bgset/ls.bgset';
 
 import './modules/navigation';
+import './modules/cart';
 
 import './components/quantityPicker';
 import './components/addToCartForm';
