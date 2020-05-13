@@ -31,20 +31,19 @@ $(document).ready(function() {
             dataCartHtml = $dataCartContents.html(),
             $dataCartItemCount = $dataCartContents.attr('data-cart-item-count'),
             $miniCartContents = $(miniCartContentsSelector)
-            // $cartItemCount = $('.js-cart-item-count')
+            $cartItemCount = $('.js-cart--itemCount')
           ;
 
           $cartItemCount.text($dataCartItemCount)
           $miniCartContents.html(dataCartHtml)
 
           if (parseInt($dataCartItemCount) > 0) {
-            // ajaxify.openCart();
-            $('html').addClass('miniCartOpen')
+            miniCart.openCart()
             $('.js-cart--outline').addClass('visually-hidden')
             $('.js-cart--filled').removeClass('visually-hidden')
           }
           else {
-            // ajaxify.closeCart();
+            miniCart.closeCart()
             $('html').removeClass('miniCartOpen')
             $('.js-cart--outline').removeClass('visually-hidden')
             $('.js-cart--filled').addClass('visually-hidden')
@@ -62,4 +61,37 @@ $(document).ready(function() {
   }
 
   ajaxify.init()
+
+  let miniCart = {
+    openCart: function() {
+      $('html').addClass('miniCartOpen')
+      $('.js-nav--hamburger').removeClass('is-active')
+      $('.js-nav--mobile').addClass('hidden')
+    },
+    closeCart: function() {
+      $('html').removeClass('miniCartOpen')
+    },
+    onCartButtonClick: function(event) {
+      let
+        isCartOpen = $('html').hasClass('miniCartOpen'),
+        isInCart = window.location.href.indexOf('/cart') !== -1
+      ;
+
+      event.preventDefault()
+
+      if(!isInCart && !isCartOpen) {
+        miniCart.openCart();
+      }
+      else {
+        miniCart.closeCart();
+      }
+    },
+    init: function() {
+      $(document).on('click', '.js-cart--toggle', miniCart.onCartButtonClick)
+      $(document).on('click', '.js-cart--return', miniCart.closeCart)
+      $(document).on('click', '.js-nav--hamburger', miniCart.closeCart)
+    }
+  }
+
+  miniCart.init()
 })

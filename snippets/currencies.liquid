@@ -50,16 +50,16 @@
 
     jQuery('[name=currencies]').val(Currency.currentCurrency).change(function() {
       var newCurrency = jQuery(this).val();
-      var $currencyNote = jQuery('.js-cart-currency-note');
+      var $currencyNote = jQuery('.js-cart--currencyNote');
       Currency.convertAll(Currency.currentCurrency, newCurrency);
       jQuery('.selected-currency').text(Currency.currentCurrency);
 
       if (newCurrency !== shopCurrency) {
-          $currencyNote.show();
-        }
-        else {
-          $currencyNote.hide();
-        }
+        $currencyNote.show();
+      }
+      else {
+        $currencyNote.hide();
+      }
     });
 
     var original_selectCallback = window.selectCallback;

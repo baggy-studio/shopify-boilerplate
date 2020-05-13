@@ -5,6 +5,7 @@
   .js-cart--toggle – to open / close the minicart
   .js-cart--outline – to show empty cart icon
   .js-cart--filled – to show filled cart icon
+  .js-cart--itemCount – to update cart item count with ajax
 
 {% endcomment %}
 
@@ -43,6 +44,7 @@
       <span class="js-cart--filled {% if cart.item_count == 0 %} visually-hidden {% endif %}">
         {% include 'inline-icon' with svg: 'icon-cart-filled.svg' %}
       </span>
+      <span class="js-cart--itemCount hidden">{{ cart.item_count }}</span>
     </a>
   </div>
 

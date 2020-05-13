@@ -1,0 +1,9 @@
+div.mini-cart {
+  display: none;
+}
+
+html.miniCartOpen {
+  div.mini-cart {
+    display: inline-block;
+  }
+}
