@@ -1,0 +1,23 @@
+{% comment %}
+
+  ––– REQUIRED JS CLASSES –––
+  .js-line--quantity – to add quantity data to the form
+  .js-line--remove – to remove the item from our form data
+
+{% endcomment %}
+
+<div class="border-list py-24 flex flex-row">
+  <a href="{{ item.url | within: collections.all }}">
+    {% include 'responsive-image' with image: item.image, max_width: 160, max_height: 220, wrapper_class: 'w-128 h-160', image_class: 'w-full h-full object-cover' %}
+  </a>
+  <div class="ml-16">
+    <a href="{{ item.url }}"><h2>{{ item.product.title }}</h2></a>
+    <p>{{ item.variant.title }}</p>
+    <p class="mt-16">{{ item.line_price | money }}</p>
+    <div class="cart--actions">
+      {% assign qp_id = 'updates_' | append: item.id %}
+      {% include 'quantity-picker' with name: 'updates[]', id: qp_id, value: item.quantity, min: 0, max: item.variant.inventory_quantity, field_class: 'js-line--quantity' %}
+      <a class="js-line--remove" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">Remove</a>
+    </div>
+  </div>
+</div>

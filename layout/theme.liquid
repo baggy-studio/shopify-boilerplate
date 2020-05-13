@@ -13,6 +13,9 @@
 </head>
 <body class="font-body">
   {% section 'header' %}
+  {% unless template == 'cart' %}
+    {% include 'mini-cart' %}
+  {% endunless %}
   <main role="main" class="container mt-header">
     {{ content_for_layout }}
   </main>

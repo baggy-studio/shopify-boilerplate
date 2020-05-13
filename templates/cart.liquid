@@ -1,41 +1,7 @@
-<div class="cart--contents">
-  <h1>Cart</h1>
-  {% if cart.item_count > 0 %}
-    <form action="/cart" method="post" novalidate>
-      <fieldset id="cart-fieldset" class="js-cart-fieldset">
-        <div>
-          {% for item in cart.items %}
-            <div class="border-list py-24 flex flex-row">
-              <a href="{{ item.url | within: collections.all }}">
-                {% include 'responsive-image' with image: item.image, max_width: 160, max_height: 220, wrapper_class: 'w-128 h-160', image_class: 'w-full h-full object-cover' %}
-              </a>
-              <div class="ml-16">
-                <a href="{{ item.url }}"><h2>{{ item.product.title }}</h2></a>
-                <p>{{ item.variant.title }}</p>
-                <p class="mt-16">{{ item.line_price | money }}</p>
-                <div class="cart--actions">
-                  {% assign qp_id = 'updates_' | append: item.id %}
-                  {% include 'quantity-picker' with name: 'updates[]', id: qp_id, value: item.quantity, min: 0, max: item.variant.inventory_quantity, field_class: 'js-line-quantity' %}
-                  <a class="js-remove-line" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">Remove</a>
-                </div>
-              </div>
-            </div>
-          {% endfor %}
+<h1>Cart</h1>
 
-          {% comment %} Add cart totals here {% endcomment %}
-        </div>
-      </fieldset>
-    </form>
-    <p class="js-cart-currency-note">
-      We process all orders in {{ shop.currency }}. 
-      While the contents of your cart are currently displayed in 
-      <span class="selected-currency"></span>, 
-      the checkout will use {{ shop.currency }} at the current exchange rate.
-    </p>
-  {% else %}
-    <p>Your cart is currently empty</p>
-    <a href="/" class="button">Continue Shopping</a>
-  {% endif %}
+<div class="js-cart--contents" data-cart-item-count="{{ cart.item_count }}">
+  {% include 'cart--contents' %}
 </div>
 
 

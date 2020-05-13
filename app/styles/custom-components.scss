@@ -19,3 +19,10 @@
 .border-list:last-child {
   @apply border-b;
 }
+
+.miniCartOpen {
+
+  .miniCart {
+    @apply block;
+  }
+}
