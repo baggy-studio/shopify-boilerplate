@@ -55,10 +55,10 @@
       jQuery('.selected-currency').text(Currency.currentCurrency);
 
       if (newCurrency !== shopCurrency) {
-        $currencyNote.show();
+        $currencyNote.removeClass('hidden');
       }
       else {
-        $currencyNote.hide();
+        $currencyNote.addClass('hidden');
       }
     });
 
@@ -71,7 +71,7 @@
 
     $('body').on('ajaxCart.afterCartLoad', function(cart) {
       Currency.convertAll(shopCurrency, jQuery('[name=currencies]').val());
-      jQuery('.selected-currency').text(Currency.currentCurrency);  
+      jQuery('.selected-currency').text(Currency.currentCurrency);
     });
 
     jQuery('.selected-currency').text(Currency.currentCurrency);
