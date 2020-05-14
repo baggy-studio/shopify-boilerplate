@@ -76,6 +76,14 @@
 
     jQuery('.selected-currency').text(Currency.currentCurrency);
 
+    $('document').ready(function() {
+      if(Currency.currentCurrency != shopCurrency) {
+        $('.js-cart--currencyNote').removeClass('hidden')
+      } else {
+        $('.js-cart-currencyNote').addClass('hidden')
+      }
+    })
+
   </script>
 
 {% endif %}

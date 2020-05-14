@@ -103,9 +103,9 @@ $(document).ready(function() {
   let lineItem = {
     isInMiniCart: function(element) {
       let
-          $element = $(element),
-          $miniCart = $element.closest(miniCartContentsSelector),
-          isInMiniCart = $miniCart.length !== 0
+        $element = $(element),
+        $miniCart = $element.closest(miniCartContentsSelector),
+        isInMiniCart = $miniCart.length !== 0
       ;
       return isInMiniCart
     },
@@ -137,8 +137,8 @@ $(document).ready(function() {
       }
     },
     init: function() {
-        $(document).on('click', removeLineSelector, lineItem.onLineRemove)
-        $(document).on('change', lineQuantitySelector, lineItem.onLineQuantityChanged)
+      $(document).on('click', removeLineSelector, lineItem.onLineRemove)
+      $(document).on('change', lineQuantitySelector, lineItem.onLineQuantityChanged)
     }
 }
 
