@@ -94,4 +94,53 @@ $(document).ready(function() {
   }
 
   miniCart.init()
+
+  let 
+    removeLineSelector = '.js-line--remove',
+    lineQuantitySelector = '.js-line--quantity'
+  ;
+
+  let lineItem = {
+    isInMiniCart: function(element) {
+      let
+          $element = $(element),
+          $miniCart = $element.closest(miniCartContentsSelector),
+          isInMiniCart = $miniCart.length !== 0
+      ;
+      return isInMiniCart
+    },
+    onLineQuantityChanged: function(event) {
+      let
+        quantity = this.value,
+        id = $(this).attr('id').replace('updates_', ''),
+        changes = {
+          quantity: quantity,
+          id: id
+        },
+        isInMiniCart = lineItem.isInMiniCart(this)
+      ;
+        
+      if(isInMiniCart) {
+        $.post('/cart/change.js', changes, ajaxify.onCartUpdated, 'json');
+      }
+    },
+    onLineRemove: function(event) {
+      let isInMiniCart = lineItem.isInMiniCart(this)
+
+      if(isInMiniCart) {
+        event.preventDefault()
+        let 
+          $removeLink = $(this),
+          removeQuery = $removeLink.attr('href').split('change?')[1]
+        ;
+        $.post('/cart/change.js', removeQuery, ajaxify.onCartUpdated, 'json');
+      }
+    },
+    init: function() {
+        $(document).on('click', removeLineSelector, lineItem.onLineRemove)
+        $(document).on('change', lineQuantitySelector, lineItem.onLineQuantityChanged)
+    }
+}
+
+lineItem.init()
 })
