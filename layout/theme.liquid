@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="eng">
 <head>
   <title>{{ page_title }}</title>
   <meta charset="utf-8">
@@ -9,7 +9,6 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
   {{ content_for_header }} <!-- Header hook for plugins -->
   {{ 'app.css' | asset_url | stylesheet_tag }}
-  {{ 'app.js' | asset_url | script_tag }}
 </head>
 <body class="font-body">
   {% section 'header' %}
@@ -19,6 +18,9 @@
   <main role="main" class="container mt-header">
     {{ content_for_layout }}
   </main>
+
+  
+  {{ 'app.js' | asset_url | script_tag }}
   {% include 'currencies' %}
 </body>
 </html>
