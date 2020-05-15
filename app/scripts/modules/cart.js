@@ -33,7 +33,7 @@ $(document).ready(function() {
             $miniCartContents = $(miniCartContentsSelector)
             $cartItemCount = $('.js-cart--itemCount')
           ;
-
+          
           $cartItemCount.text($dataCartItemCount)
           $miniCartContents.html(dataCartHtml)
 
