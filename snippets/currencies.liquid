@@ -4,6 +4,7 @@
   {{ "jquery.currencies.min.js" | asset_url | script_tag }}
 
   <script>
+
     Currency.format = '{{ settings.currency_format | default: 'money_with_currency_format' }}';
     var shopCurrency = '{{ shop.currency }}';
 

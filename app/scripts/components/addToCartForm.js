@@ -2,6 +2,8 @@ $(document).ready(function() {
     
   let
     addToCartFormSelector = '.js-atc--form',
+    variantPriceSelector = '.js-atc--price',
+    currencySelector = '.js-currency--select',
     // Find the input / select with a name including 'option'
     productOptionSelector = addToCartFormSelector + ' [name*=option]'
   ;
@@ -31,8 +33,6 @@ $(document).ready(function() {
         // If no variant is selected, use the default value (as specified in liquid file)
         selectedVariant = $id.val()
       ;
-      
-      console.log(formData)
 
       // When an option in our form is selected, make the name of the option in the data match up with the label that our customers see.
       $.each(formData, function(index, item ) {
@@ -56,17 +56,29 @@ $(document).ready(function() {
         
       let 
         $form = $(this),
+        hasVariant = selectedVariant !== null,
         canAddToCart = selectedVariant.inventory_quantity > 0,
         $id = $form.find('.js-atc--variant'),
-        $addToCartButton = $form.find('.js-atc--button')
+        $addToCartButton = $form.find('.js-atc--button'),
+        $price = $(variantPriceSelector),
+        formattedVariantPrice,
+        priceHtml;
       ;
-        
+      
+      if (hasVariant) {
+        formattedVariantPrice = '£' + (selectedVariant.price/100).toFixed(2);
+        priceHtml = '<span class="money">'+formattedVariantPrice+'</span>';
+      }
+      else {
+        priceHtml = $price.attr('data-default-price');
+      }
+
       if(canAddToCart) {
         $id.val(selectedVariant.id)
         $addToCartButton.prop('disabled', false)
         $addToCartButton.removeClass('disabled')
-        // Change this if using different cart button copy
-        $addToCartButton.html('£' + (selectedVariant.price / 100).toFixed(2) + '– Add to Cart')
+        // // Change this if using different cart button copy
+        $addToCartButton.text('Add to Cart')
         window.history.replaceState(null, null, '?variant=' + selectedVariant.id)
       }
       else {
@@ -76,6 +88,8 @@ $(document).ready(function() {
         $addToCartButton.text('Sold Out')
         window.history.replaceState(null, null, window.location.pathname)
       }
+
+      $price.html(priceHtml)
 
     },
     init: function() {
