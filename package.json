@@ -6,7 +6,7 @@
   "scripts": {
     "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
     "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
-    "clean": "rm -rf ./assets/app.css && rm -rf ./assets/app.js && rm -rf ./mix-manifest.json",
+    "clean": "rm -rf ./assets/app.css && rm -rf ./assets/app.js && rm -rf ./mix-manifest.json && rm -rf ./assets/vendor.js",
     "dev": "npm run clean && concurrently \"npm run development -- --watch\" \"theme watch --notify=/var/tmp/theme_ready \" --names \"📦,🛍\" --prefix name",
     "deploy": "npm run clean && npm run production && theme deploy"
   },

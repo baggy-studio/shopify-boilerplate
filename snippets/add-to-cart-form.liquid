@@ -32,7 +32,7 @@
 {% assign default_variant = product.selected_or_first_available_variant %}
 
 {% assign can_add_to_cart = false %}
-{% if product.selected_variant.available %}
+{% if default_variant.available %}
   {% assign can_add_to_cart = true %}
 {% endif %}
 

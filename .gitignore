@@ -30,6 +30,4 @@ variables
 node_modules
 
 ## Mix ##
-assets/app.css
-assets/app.js
-assets/mix-manifest.json
+assets/*.**

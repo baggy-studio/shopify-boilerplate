@@ -102,9 +102,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lazysizes_plugins_bgset_ls_bgset__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! lazysizes/plugins/bgset/ls.bgset */ "./node_modules/lazysizes/plugins/bgset/ls.bgset.js");
 /* harmony import */ var lazysizes_plugins_bgset_ls_bgset__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(lazysizes_plugins_bgset_ls_bgset__WEBPACK_IMPORTED_MODULE_2__);
 global.$ = global.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
-global.jQuery = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"); // import '../scripts/vendor/currencies';
-// import '../scripts/vendor/jquery.currencies';
-
 
 
 

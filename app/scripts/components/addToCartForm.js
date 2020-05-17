@@ -1,9 +1,9 @@
+import currencyPicker from './currencyPicker';
+
 $(document).ready(function() {
-    
   let
     addToCartFormSelector = '.js-atc--form',
     variantPriceSelector = '.js-atc--price',
-    currencySelector = '.js-currency--select',
     // Find the input / select with a name including 'option'
     productOptionSelector = addToCartFormSelector + ' [name*=option]'
   ;
@@ -90,7 +90,7 @@ $(document).ready(function() {
       }
 
       $price.html(priceHtml)
-
+      currencyPicker.onMoneySpanAdded()
     },
     init: function() {
       $(document).on('change', productOptionSelector, addToCartForm.onProductOptionChanged)
