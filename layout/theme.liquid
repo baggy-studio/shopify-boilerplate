@@ -22,7 +22,7 @@
   data-shop-mwc-format="{{ mwc_format | escape }}"
   data-money-format="{{ money_format | escape }}"
   data-default-currency="{{ settings.default_currency | default: shop.currency }}"
-
+>
   {% section 'header' %}
   {% unless template == 'cart' %}
     {% include 'mini-cart' %}
