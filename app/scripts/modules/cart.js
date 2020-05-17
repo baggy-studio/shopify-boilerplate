@@ -1,3 +1,5 @@
+import currencyPicker from '../components/currencyPicker';
+
 $(document).ready(function() {
 
   let miniCartContentsSelector = '.js-cart--miniCart'
@@ -30,12 +32,13 @@ $(document).ready(function() {
             $dataCartContents = $(context).find('.js-cart--contents'),
             dataCartHtml = $dataCartContents.html(),
             $dataCartItemCount = $dataCartContents.attr('data-cart-item-count'),
-            $miniCartContents = $(miniCartContentsSelector)
+            $miniCartContents = $(miniCartContentsSelector),
             $cartItemCount = $('.js-cart--itemCount')
           ;
           
           $cartItemCount.text($dataCartItemCount)
           $miniCartContents.html(dataCartHtml)
+          currencyPicker.onMoneySpanAdded();
 
           if (parseInt($dataCartItemCount) > 0) {
             miniCart.openCart()

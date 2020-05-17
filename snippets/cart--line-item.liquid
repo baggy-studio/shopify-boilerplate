@@ -13,7 +13,7 @@
   <div class="ml-16">
     <a href="{{ item.url }}"><h2>{{ item.product.title }}</h2></a>
     <p>{{ item.variant.title }}</p>
-    <p class="mt-16">{{ item.line_price | money }}</p>
+    <div class="mt-16">{{ item.line_price | money }}</div>
     <div class="cart--actions">
       {% assign qp_id = 'updates_' | append: item.id %}
       {% include 'quantity-picker' with name: 'updates[]', id: qp_id, value: item.quantity, min: 0, max: item.variant.inventory_quantity, field_class: 'js-line--quantity' %}
