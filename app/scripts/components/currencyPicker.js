@@ -12,14 +12,11 @@ let
 Currency.moneyFormats[shopCurrency].money_with_currency_format = mwcFormat;
 Currency.moneyFormats[shopCurrency].money_format = moneyFormat;
 
-let defaultCurrency = $('body').attr('data-default-currency')
-
-/* Cookie currency */
-var cookieCurrency = Currency.cookie.read();
-
 
 // Currency Global Variables
 let
+  defaultCurrency = $('body').attr('data-default-currency'),
+  cookieCurrency = Currency.cookie.read(),
   moneySpanSelector = 'span.money',
   currencyPickerSelector = '[name=currencies]',
   activeCurrencySelector = '.js-currency--active',
@@ -65,7 +62,8 @@ let currencyPicker = {
   onCurrencyChanged: function(event) {
     let
       newCurrency = $(this).val(),
-      $otherPickers = $(currencyPickerSelector).not($(this));
+      $otherPickers = $(currencyPickerSelector).not($(this))
+    ;
 
     Currency.convertAll(Currency.currentCurrency, newCurrency);
     currencyPicker.setCurrencyText(newCurrency);
@@ -93,8 +91,10 @@ let currencyPicker = {
     }
   },
   onMoneySpanAdded: function() {
-    Currency.convertAll(shopCurrency, Currency.currentCurrency);
-    currencyPicker.setCurrencyText();
+    if(Currency.currentCurrency != defaultCurrency) {
+      Currency.convertAll(shopCurrency, Currency.currentCurrency);
+      currencyPicker.setCurrencyText();
+    }
   },
   init: function() {
     currencyPicker.loadCurrency();
