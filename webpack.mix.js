@@ -14,6 +14,9 @@ mix.autoload({
   jquery: ['$', 'window.$', 'window.jQuery']
 });
 
+mix.js('app/scripts/vendor.js', 'assets')
+  .setPublicPath('assets')
+
 mix.js('app/scripts/app.js', 'assets')
   .setPublicPath('assets');
    
