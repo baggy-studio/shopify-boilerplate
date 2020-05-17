@@ -29,6 +29,7 @@
   "dependencies": {
     "jquery": "^3.5.1",
     "lazysizes": "^5.2.0",
+    "slick-carousel": "^1.8.1",
     "tailwindcss": "^1.4.6"
   }
 }

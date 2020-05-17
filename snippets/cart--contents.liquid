@@ -3,7 +3,7 @@
   ––– REQUIRED JS CLASSES –––
   .js-cart--fieldset – to add quantity data to the form
   .js-cart--currencyNote – to show the currency note if not in default shop currency
-  .selected-currency – to display the currently selected currency
+  .js-currency--active – to display / change the current currency
   .js-cart--return – to close the minicart
 
 {% endcomment %}
@@ -22,7 +22,7 @@
   <p class="js-cart--currencyNote hidden">
     We process all orders in {{ shop.currency }}. 
     While the contents of your cart are currently displayed in 
-    <span class="selected-currency js-currency--active"></span>, 
+    <span class="js-currency--active"></span>, 
     the checkout will use {{ shop.currency }} at the current exchange rate.
   </p>
 {% else %}

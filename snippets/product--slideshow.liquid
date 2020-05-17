@@ -1,0 +1,25 @@
+{% assign has_multiple_images = false %}
+{% if product.images.size > 1 %}
+  {% assign has_multiple_images = true %}
+{% endif %}
+
+{% if has_multiple_images %}
+  <div class="js-product--thumbs w-1/4 lg:w-1/5 h-full flex flex-col mr-16">
+    <div class="js-product--thumbSlides">
+      {% for image in product.images %}
+        <div class="js-product--thumbnail">
+          {% include 'responsive-image' with image: image, max_width: 120, max_height: 240, wrapper_class: 'mb-16 w-80 h-128 md:w-full md:h-auto', image_class: 'w-full h-full object-cover' %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+<div class="js-product--slideshow {% if has_multiple_images %} w-3/4 lg:w-4/5 {% else %} w-full {% endif %} h-full">
+  <div class="js-product--slides w-full h-full">
+    {% for image in product.images %}
+      <div class="js-product--image">
+        {% include 'responsive-image' with image: image, max_width: 600, max_height: 700, wrapper_class: 'w-full h-full', image_class: 'w-full h-full object-cover' %}
+      </div>
+    {% endfor %}
+  </div>
+</div>
