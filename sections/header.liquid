@@ -1,12 +1,23 @@
+{% comment %}
+
+  ––– REQUIRED JS CLASSES –––
+  .js-nav--hamburger – to toggle active hamburger class / open mobile menu
+  .js-cart--toggle – to open / close the minicart
+  .js-cart--outline – to show empty cart icon
+  .js-cart--filled – to show filled cart icon
+  .js-cart--itemCount – to update cart item count with ajax
+
+{% endcomment %}
+
 {% assign nest_mode = section.settings.nest_mode %}
 
-<div class="container relative z-30 h-header flex flex-row items-center justify-between">
+<div class="container relative h-header flex flex-row items-center justify-between">
 
   <a href="/" id="logo" class="z-40 w-80 abs-c">
     {% include 'inline-icon' with svg: 'icon-logo.svg', alt: shop_title, class: 'logo__main' %}
   </a>
 
-  <button class="hamburger reset-input order-first z-40 md:hidden" type="button">
+  <button class="hamburger js-nav--hamburger reset-input order-first z-40 md:hidden" type="button">
     <span class="hamburger-box">
       <span class="hamburger-inner"></span>
     </span>
@@ -26,12 +37,14 @@
         {% include 'inline-icon' with svg: 'icon-account.svg' %}
       </a>
     {% endif %}
-    <a href="/cart" id="cart_button" class="inline-block w-24">
-      {% if cart.item_count == 0 %}
+    <a href="/cart" id="cart_button" class="js-cart--toggle inline-block w-24">
+      <span class="js-cart--outline {% if cart.item_count > 0 %} visually-hidden {% endif %}">
         {% include 'inline-icon' with svg: 'icon-cart-empty.svg' %}
-      {% else %}
+      </span>
+      <span class="js-cart--filled {% if cart.item_count == 0 %} visually-hidden {% endif %}">
         {% include 'inline-icon' with svg: 'icon-cart-filled.svg' %}
-      {% endif %}
+      </span>
+      <span class="js-cart--itemCount hidden">{{ cart.item_count }}</span>
     </a>
   </div>
 
@@ -44,7 +57,7 @@
 {% schema %}
   {
     "name": "Header",
-    "class": "header__bar fixed w-screen inset-0 h-header",
+    "class": "header__bar fixed w-screen inset-0 h-header z-30",
     "settings": [
       {
         "type": "header",
@@ -80,7 +93,8 @@
       {
         "type": "link_list",
         "id": "main_menu",
-        "label": "Main Menu"
+        "label": "Main Menu",
+        "default": "main-menu"
       },
       {
         "type": "select",

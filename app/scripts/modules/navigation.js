@@ -1,21 +1,23 @@
+// TO DO: Add background on scroll
+
 $(document).ready(function() {
   let navigation = {
     openLinks: function($toggle, nestType) {
       let 
-        $dropdown = $toggle.siblings('div.nav--' + nestType),
-        $arrow = $toggle.find('.js-arrow')
+        $dropdown = $toggle.siblings('.js-nav--' + nestType),
+        $arrow = $toggle.find('.js-nav--arrow')
       ;
       $dropdown.toggleClass('hidden')
       $arrow.toggleClass('flip-h')
     },
     openMob: function($hamburger) {
       $hamburger.toggleClass('is-active')
-      $('.navMenu--mobile').toggleClass('hidden')
+      $('.js-nav--mobile').toggleClass('hidden')
     },
     init: function() {
       let 
-        $toggle = $('a.js-dropdown-link'),
-        $hamburger = $('.hamburger')
+        $toggle = $('.js-nav--toggle'),
+        $hamburger = $('.js-nav--hamburger')
       ;
   
       $toggle.on('click', function(event) {

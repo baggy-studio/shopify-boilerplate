@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <title>{{ page_title }}</title>
   <meta charset="utf-8">
@@ -22,13 +22,15 @@
   data-shop-mwc-format="{{ mwc_format | escape }}"
   data-money-format="{{ money_format | escape }}"
   data-default-currency="{{ settings.default_currency | default: shop.currency }}"
->
+
   {% section 'header' %}
+  {% unless template == 'cart' %}
+    {% include 'mini-cart' %}
+  {% endunless %}
   <main role="main" class="container mt-header">
     {{ content_for_layout }}
   </main>
-  {% comment %} {% include 'currencies' %} {% endcomment %}
-  {% comment %} {{ 'jquery.currencies.min.js' | asset_url | script_tag }} {% endcomment %}
+
   {{ 'app.js' | asset_url | script_tag }}
 </body>
 </html>

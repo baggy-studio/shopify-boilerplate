@@ -1,0 +1,74 @@
+{% comment %}
+
+  ––– REQUIRED JS CLASSES –––
+  .js-atc--form – to specify the form
+  .js-atc--variant – to add the id of the selected variant to the form data & send to Shopify
+  .js-atc--price – to update the price based on the selected variant
+  .js-atc--button – to disable the add to cart button if sold out
+
+  ––– REQUIRED JS DATA –––
+  .js-atc--form | data-variants – to pass the variants_with_quantity data to js
+  .js-atc--form select | name={{ option_name }} – to specify the user input that triggers the form change
+
+{% endcomment %}
+
+
+{% assign has_multiple_variants = false %}
+{% if product.variants.size > 1 %}
+  {% assign has_multiple_variants = true %}
+{% endif %}
+
+{% assign has_multiple_options = false %}
+{% if product.options.size > 1 %}
+  {% assign has_multiple_options = true %}
+{% endif %}
+
+{% if has_multiple_variants %}
+  {% comment %} This will populate the form with all the variant data we need {% endcomment %}
+  {% include 'get-variants-with-quantity-json' with product: product %}
+{% endif %}
+
+{% comment %} Use the first variant as the default {% endcomment %}
+{% assign default_variant = product.selected_or_first_available_variant %}
+
+{% assign can_add_to_cart = false %}
+{% if product.selected_variant.available %}
+  {% assign can_add_to_cart = true %}
+{% endif %}
+
+<form id="add-to-cart-form" class="js-atc--form" action="/cart/add" method="post" enctype="multipart/form-data" data-variants="{{ variants_with_quantity_json | url_param_escape }}">
+  <div class="flex">
+    {% if has_multiple_options or has_multiple_variants %}
+      {% for option in product.options_with_values %}
+        {% assign option_name = 'option' | append: option.position %}
+        {% assign single_value = false %}
+        {% if option.values.size < 2 %}
+          {% assign single_value = true %}
+        {% endif %}
+        
+        {% assign selected = default_variant[option_name] %}
+        <div class="select-border mr-16 flex-grow">
+          <select name="{{ option_name }}" id="select-{{ option.name | downcase }}" >
+            {% for value in option.values %}
+              <option value="{{ value }}" {% if value == selected %} selected {% endif %}>{{ value }}</option>
+            {% endfor %}
+          </select>
+          {% include 'inline-icon' with svg: 'icon-arrow-down.svg', class: 'absolute right-8 top-16 w-12' %}
+        </div>
+      {% endfor %}
+    {% endif %}
+
+    {% comment %} use name="quantity" to add the quantity data to our form {% endcomment %}
+    {% include 'quantity-picker' with name: "quantity", value: 1, min: 1, max: current_variant.inventory_quantity, class: 'select-border flex items-center px-8' %}
+  </div>
+  {% comment %} use name="id" to add the variant data to our form {% endcomment %}
+  <input class="js-atc--variant" type="hidden" name="id" value="{{ default_variant.id }}">
+
+  <button type="submit" name="add" id="add-to-cart-button" class="js-atc--button button">
+    {% if can_add_to_cart %}
+      Add to Cart
+    {% else %}
+      Sold Out
+    {% endif %}
+  </button>
+</form>

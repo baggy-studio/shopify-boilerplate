@@ -1,3 +1,16 @@
+{% comment %}
+
+  ––– REQUIRED JS CLASSES –––
+  .js-nav--toggle – to specify which link toggles the nested navigation
+  .js-nav--dropdown – to hide and show the dropdown
+  .js-nav--sidebar – to hide and show the sidebar
+  .js-nav--arrow – to rotate the arrow downwards when the dropdown is active
+
+  ––– REQUIRED JS DATA –––
+  .js-nav--toggle | data-nest – to specify whether we're using a dropdown or a sidebar
+
+{% endcomment %}
+
 <div class="nav--links hidden md:block order-first">
     <ul class="flex flex-row items-center z-50">
       {% for link in linklists[menu].links %}
@@ -5,14 +18,14 @@
           {% if link.levels == 0 %}
             <a href="{{ link.url }}" class="z-20 relative">{{ link.title }}</a>
           {% else %}
-            <a href="{{ link.url }}" class="js-dropdown-link relative z-20" data-nest="{{ nest_mode }}">
+            <a href="{{ link.url }}" class="js-nav--toggle relative z-20" data-nest="{{ nest_mode }}">
               {{ link.title }}
-              <span class="js-arrow inline-block w-12 translateY-neg1">
+              <span class="js-nav--arrow inline-block w-12 translateY-neg1">
                 {% include 'inline-icon' with svg: 'icon-arrow-down.svg' %}
               </span>
             </a>
             {% if nest_mode == 'dropdown' %}
-              <div class="nav--dropdown hidden fixed left-0 bg-bkgmain w-screen py-32">
+              <div class="js-nav--dropdown hidden fixed left-0 bg-bkgmain w-screen py-32">
                 <ul class="flex container flex-row justify-between">
                   {% for sub_link in link.links %}
                     <li class="inline-block px-16 first:pl-0 last:pr-0">
@@ -22,7 +35,7 @@
                 </ul>
               </div>
             {% elsif nest_mode == 'sidebar' %}
-              <div class="nav--sidebar hidden fixed left-0 z-10 h-screen bg-bkgaccent md:w-1/2 lg:w-1/4 top-0">
+              <div class="js-nav--sidebar hidden fixed left-0 z-10 h-screen bg-bkgaccent md:w-1/2 lg:w-1/4 top-0">
                 <ul class="container flex flex-col mt-96">
                   {% for sub_link in link.links %}
                     <li class="inline-block py-16">

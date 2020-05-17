@@ -1,0 +1,10 @@
+{% comment %} Grab all the variants so we can read them with javascript {% endcomment %}
+{% assign variants_with_quantity_json = product.variants | json %}
+{% unless variants_with_quantity_json contains 'inventory_quantity' %}
+  {% comment %} Attach the inventory quantity to each variant {% endcomment %}
+  {% for variant in product.variants %}
+    {% assign replace_hook_variant_id = '"id":' | append: variant.id %}
+    {% assign replace_id_plus_inventory = replace_hook_variant_id | append: ',' | append: '"inventory_quantity":' | append: variant.inventory_quantity %}
+    {% assign variants_with_quantity_json = variants_with_quantity_json | replace: replace_hook_variant_id, replace_id_plus_inventory %}
+  {% endfor %}
+{% endunless %}

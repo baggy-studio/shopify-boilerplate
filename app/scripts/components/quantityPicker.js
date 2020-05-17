@@ -3,19 +3,21 @@
 
 $(document).ready(function() {
   let
-  quantityFieldSelector = '.js-quantity-field',
-  quantityButtonSelector = '.js-quantity-button',
-  quantityPickerSelector = '.js-quantity-picker',
+  quantityFieldSelector = '.js-quantity--field',
+  quantityButtonSelector = '.js-quantity--button',
+  quantityPickerSelector = '.js-quantity--picker',
   quantityPicker = {
     onButtonClick: function(event) {
       let
         $button = $(this),
         $picker = $button.closest(quantityPickerSelector),
-        $quantity = $picker.find('.js-quantity-field'),
+        $quantity = $picker.find(quantityFieldSelector),
         quantityValue = parseInt($quantity.val()),
-        max = $quantity.attr('max') ? parseInt($quantity.attr('max')) : null;
+        max = $quantity.attr('max') ? parseInt($quantity.attr('max')) : null
+      ;
 
       if ($button.hasClass('plus') && (max === null || quantityValue+1 <= max)) {
+        // if there's no max, or if the current quantity is less than the max, change the value
         $quantity.val(quantityValue + 1).change();
       }
       else if ($button.hasClass('minus')) {
@@ -26,12 +28,13 @@ $(document).ready(function() {
       let
         $field = $(this),
         $picker = $field.closest(quantityPickerSelector),
-        $quantityText = $picker.find('.js-quantity-text'),
+        $quantityText = $picker.find('.js-quantity--text'),
         // check if should disable based on the 'min' and 'max' attr of the input
         shouldDisableMinus = parseInt(this.value) === parseInt($field.attr('min')),
         shouldDisablePlus = parseInt(this.value) === parseInt($field.attr('max')),
-        $minusButton = $picker.find('.js-quantity-button.minus'),
-        $plusButton = $picker.find('.js-quantity-button.plus');
+        $minusButton = $picker.find('.js-quantity--button.minus'),
+        $plusButton = $picker.find('.js-quantity--button.plus')
+      ;
 
       $quantityText.text(this.value);
 
