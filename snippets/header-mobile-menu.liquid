@@ -1,17 +1,17 @@
 {% comment %}
 
   ––– REQUIRED JS CLASSES –––
-  .js-nav--mobile – to open and close the mobile menu
-  .js-nav--toggle – to specify which link toggles the nested navigation
-  .js-nav--arrow – to rotate the arrow downwards when the dropdown is active
-  .js-nav--dropdown – to hide and show the dropdown
+  .js-nav-mobile – to open and close the mobile menu
+  .js-nav-toggle – to specify which link toggles the nested navigation
+  .js-nav-arrow – to rotate the arrow downwards when the dropdown is active
+  .js-nav-dropdown – to hide and show the dropdown
 
   ––– REQUIRED JS DATA –––
-  .js-nav--toggle | data-nest – to specify whether we're using a dropdown or a sidebar
+  .js-nav-toggle | data-nest – to specify whether we're using a dropdown or a sidebar
 
 {% endcomment %}
 
-<div class="js-nav--mobile hidden md:hidden z-20 bg-bkgaccent fixed min-w-full h-screen top-0 left-0 pt-header">
+<div class="js-nav-mobile hidden md:hidden z-20 bg-bkgaccent fixed min-w-full h-screen top-0 left-0 pt-header">
   <div class="container">
     <ul>
       {% for link in linklists[link_list].links %}
@@ -19,13 +19,13 @@
           {% if link.levels == 0 %}
             <a class="inline-block w-full" href="{{ link.url }}">{{ link.title }}</a>
           {% else %}
-            <a class="js-nav--toggle flex justify-between inline-block" data-nest="dropdown" href="{{ link.url }}">
+            <a class="js-nav-toggle flex justify-between inline-block" data-nest="dropdown" href="{{ link.url }}">
               {{ link.title }}
-              <span class="js-nav--arrow inline-block w-12 translateY-neg1">
+              <span class="js-nav-arrow inline-block w-12 translateY-neg1">
                 {% include 'inline-icon' with svg: 'icon-arrow-down.svg' %}
               </span>
             </a>
-            <div class="js-nav--dropdown pt-16 hidden">
+            <div class="js-nav-dropdown pt-16 hidden">
               <ul>
                 {% for sub_link in link.links %}
                   <li class="my-16 "><a href="{{ sub_link.url }}">{{ sub_link.title }}</a></li>
@@ -36,6 +36,6 @@
         </li>
       {% endfor %}
     </ul>
-    {% include 'currency-picker' with class: 'mt-32' %}
+    {% include 'component-currency-picker' with class: 'mt-32' %}
   </div>
 </div>

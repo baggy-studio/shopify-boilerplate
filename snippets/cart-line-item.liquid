@@ -1,8 +1,8 @@
 {% comment %}
 
   ––– REQUIRED JS CLASSES –––
-  .js-line--quantity – to add quantity data to the form
-  .js-line--remove – to remove the item from our form data
+  .js-line-quantity – to add quantity data to the form
+  .js-line-remove – to remove the item from our form data
 
 {% endcomment %}
 
@@ -14,10 +14,10 @@
     <a href="{{ item.url }}"><h2>{{ item.product.title }}</h2></a>
     <p>{% if item.product.variants.size > 1 %} {{ item.variant.title }} {% endif %}</p>
     <div class="mt-16">{{ item.line_price | money }}</div>
-    <div class="cart--actions">
+    <div class="cart-actions">
       {% assign qp_id = 'updates_' | append: item.id %}
-      {% include 'quantity-picker' with name: 'updates[]', id: qp_id, value: item.quantity, min: 0, max: item.variant.inventory_quantity, field_class: 'js-line--quantity' %}
-      <a class="js-line--remove" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">Remove</a>
+      {% include 'component-quantity-picker' with name: 'updates[]', id: qp_id, value: item.quantity, min: 0, max: item.variant.inventory_quantity, field_class: 'js-line-quantity' %}
+      <a class="js-line-remove" href="/cart/change?line={{ forloop.index }}&amp;quantity=0">Remove</a>
     </div>
   </div>
 </div>

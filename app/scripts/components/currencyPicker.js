@@ -19,8 +19,8 @@ let
   cookieCurrency = Currency.cookie.read(),
   moneySpanSelector = 'span.money',
   currencyPickerSelector = '[name=currencies]',
-  activeCurrencySelector = '.js-currency--active',
-  currencyNoteSelector = '.js-cart--currencyNote'
+  activeCurrencySelector = '.js-currency-active',
+  currencyNoteSelector = '.js-cart-currencyNote'
 ;
 
 let currencyPicker = {

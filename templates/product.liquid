@@ -1,14 +1,22 @@
+{% comment %}
+
+  ––– REQUIRED JS CLASSES –––
+  .js-atc-price – to update the price based on the selected variant
+
+{% endcomment %}
+
+
 <div class="flex flex-col lg:flex-row">
   <div class="w-full lg:w-1/2 flex">
-    {% include 'product--slideshow' %}
+    {% include 'product-slideshow' %}
   </div>
   <div class="w-full lg:w-1/2 px-24">
     <h1>{{ product.title }}</h1>
-    <span class="js-atc--price" data-default-price="{{ product.price | money }}">
+    <span class="js-atc-price" data-default-price="{{ product.price | money }}">
       {{ product.selected_or_first_available_variant.price | money }}
     </span>
     <div>{{ product.description }}</div>
-    {% include 'add-to-cart-form' with current_variant: current_variant %}
+    {% include 'component-add-to-cart-form' with current_variant: current_variant %}
   </div>
 </div>
 

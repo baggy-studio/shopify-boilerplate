@@ -4,20 +4,20 @@ $(document).ready(function() {
   let navigation = {
     openLinks: function($toggle, nestType) {
       let 
-        $dropdown = $toggle.siblings('.js-nav--' + nestType),
-        $arrow = $toggle.find('.js-nav--arrow')
+        $dropdown = $toggle.siblings('.js-nav-' + nestType),
+        $arrow = $toggle.find('.js-nav-arrow')
       ;
       $dropdown.toggleClass('hidden')
       $arrow.toggleClass('flip-h')
     },
     openMob: function($hamburger) {
       $hamburger.toggleClass('is-active')
-      $('.js-nav--mobile').toggleClass('hidden')
+      $('.js-nav-mobile').toggleClass('hidden')
     },
     init: function() {
       let 
-        $toggle = $('.js-nav--toggle'),
-        $hamburger = $('.js-nav--hamburger')
+        $toggle = $('.js-nav-toggle'),
+        $hamburger = $('.js-nav-hamburger')
       ;
   
       $toggle.on('click', function(event) {

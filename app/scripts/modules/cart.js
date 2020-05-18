@@ -2,7 +2,7 @@ import currencyPicker from '../components/currencyPicker';
 
 $(document).ready(function() {
 
-  let miniCartContentsSelector = '.js-cart--miniCart'
+  let miniCartContentsSelector = '.js-cart-miniCart'
 
   let ajaxify = {
     onAddToCart: function(event) {
@@ -18,7 +18,7 @@ $(document).ready(function() {
     },
     onCartUpdated: function() {
       let
-        $miniCartFieldset = $(miniCartContentsSelector + '.js-cart--fieldset')
+        $miniCartFieldset = $(miniCartContentsSelector + '.js-cart-fieldset')
       ;
 
       $miniCartFieldset.prop('disabled', true)
@@ -29,11 +29,11 @@ $(document).ready(function() {
         context: document.body,
         success: function(context) {
           let 
-            $dataCartContents = $(context).find('.js-cart--contents'),
+            $dataCartContents = $(context).find('.js-cart-contents'),
             dataCartHtml = $dataCartContents.html(),
             $dataCartItemCount = $dataCartContents.attr('data-cart-item-count'),
             $miniCartContents = $(miniCartContentsSelector),
-            $cartItemCount = $('.js-cart--itemCount')
+            $cartItemCount = $('.js-cart-itemCount')
           ;
           
           $cartItemCount.text($dataCartItemCount)
@@ -42,14 +42,14 @@ $(document).ready(function() {
 
           if (parseInt($dataCartItemCount) > 0) {
             miniCart.openCart()
-            $('.js-cart--outline').addClass('visually-hidden')
-            $('.js-cart--filled').removeClass('visually-hidden')
+            $('.js-cart-outline').addClass('visually-hidden')
+            $('.js-cart-filled').removeClass('visually-hidden')
           }
           else {
             miniCart.closeCart()
             $('html').removeClass('miniCartOpen')
-            $('.js-cart--outline').removeClass('visually-hidden')
-            $('.js-cart--filled').addClass('visually-hidden')
+            $('.js-cart-outline').removeClass('visually-hidden')
+            $('.js-cart-filled').addClass('visually-hidden')
           }
         }
       })
@@ -59,7 +59,7 @@ $(document).ready(function() {
       alert(data.status + "–" + data.message + "; " + data.description)
     },
     init: function() {
-      $(document).on('submit', '.js-atc--form', ajaxify.onAddToCart)
+      $(document).on('submit', '.js-atc-form', ajaxify.onAddToCart)
     }
   }
 
@@ -68,8 +68,8 @@ $(document).ready(function() {
   let miniCart = {
     openCart: function() {
       $('html').addClass('miniCartOpen')
-      $('.js-nav--hamburger').removeClass('is-active')
-      $('.js-nav--mobile').addClass('hidden')
+      $('.js-nav-hamburger').removeClass('is-active')
+      $('.js-nav-mobile').addClass('hidden')
     },
     closeCart: function() {
       $('html').removeClass('miniCartOpen')
@@ -90,17 +90,17 @@ $(document).ready(function() {
       }
     },
     init: function() {
-      $(document).on('click', '.js-cart--toggle', miniCart.onCartButtonClick)
-      $(document).on('click', '.js-cart--return', miniCart.closeCart)
-      $(document).on('click', '.js-nav--hamburger', miniCart.closeCart)
+      $(document).on('click', '.js-cart-toggle', miniCart.onCartButtonClick)
+      $(document).on('click', '.js-cart-return', miniCart.closeCart)
+      $(document).on('click', '.js-nav-hamburger', miniCart.closeCart)
     }
   }
 
   miniCart.init()
 
   let 
-    removeLineSelector = '.js-line--remove',
-    lineQuantitySelector = '.js-line--quantity'
+    removeLineSelector = '.js-line-remove',
+    lineQuantitySelector = '.js-line-quantity'
   ;
 
   let lineItem = {

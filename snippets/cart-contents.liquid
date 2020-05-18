@@ -1,31 +1,31 @@
 {% comment %}
 
   ––– REQUIRED JS CLASSES –––
-  .js-cart--fieldset – to add quantity data to the form
-  .js-cart--currencyNote – to show the currency note if not in default shop currency
-  .js-currency--active – to display / change the current currency
-  .js-cart--return – to close the minicart
+  .js-cart-fieldset – to add quantity data to the form
+  .js-cart-currencyNote – to show the currency note if not in default shop currency
+  .js-currency-active – to display / change the current currency
+  .js-cart-return – to close the minicart
 
 {% endcomment %}
 
 {% if cart.item_count > 0 %}
   <form action="/cart" method="post" novalidate>
-    <fieldset id="cart-fieldset" class="js-cart--fieldset">
+    <fieldset id="cart-fieldset" class="js-cart-fieldset">
       <div>
         {% for item in cart.items %}
-          {% include 'cart--line-item' %}
+          {% include 'cart-line-item' %}
         {% endfor %}
         {% comment %} Add cart totals here {% endcomment %}
       </div>
     </fieldset>
   </form>
-  <p class="js-cart--currencyNote hidden">
+  <p class="js-cart-currencyNote hidden">
     We process all orders in {{ shop.currency }}. 
     While the contents of your cart are currently displayed in 
-    <span class="js-currency--active"></span>, 
+    <span class="js-currency-active"></span>, 
     the checkout will use {{ shop.currency }} at the current exchange rate.
   </p>
 {% else %}
   <p>Your cart is currently empty</p>
-  <a href="/" class="button js-cart--return">Continue Shopping</a>
+  <a href="/" class="button js-cart-return">Continue Shopping</a>
 {% endif %}

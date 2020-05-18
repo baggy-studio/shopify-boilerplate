@@ -2,8 +2,8 @@ import currencyPicker from './currencyPicker';
 
 $(document).ready(function() {
   let
-    addToCartFormSelector = '.js-atc--form',
-    variantPriceSelector = '.js-atc--price',
+    addToCartFormSelector = '.js-atc-form',
+    variantPriceSelector = '.js-atc-price',
     // Find the input / select with a name including 'option'
     productOptionSelector = addToCartFormSelector + ' [name*=option]'
   ;
@@ -29,7 +29,7 @@ $(document).ready(function() {
           option2: null,
           option3: null
         },
-        $id = $form.find('.js-atc--variant'),
+        $id = $form.find('.js-atc-variant'),
         // If no variant is selected, use the default value (as specified in liquid file)
         selectedVariant = $id.val()
       ;
@@ -58,8 +58,8 @@ $(document).ready(function() {
         $form = $(this),
         hasVariant = selectedVariant !== null,
         canAddToCart = selectedVariant.inventory_quantity > 0,
-        $id = $form.find('.js-atc--variant'),
-        $addToCartButton = $form.find('.js-atc--button'),
+        $id = $form.find('.js-atc-variant'),
+        $addToCartButton = $form.find('.js-atc-button'),
         $price = $(variantPriceSelector),
         formattedVariantPrice,
         priceHtml;

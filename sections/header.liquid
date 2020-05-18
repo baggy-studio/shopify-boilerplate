@@ -1,11 +1,11 @@
 {% comment %}
 
   ––– REQUIRED JS CLASSES –––
-  .js-nav--hamburger – to toggle active hamburger class / open mobile menu
-  .js-cart--toggle – to open / close the minicart
-  .js-cart--outline – to show empty cart icon
-  .js-cart--filled – to show filled cart icon
-  .js-cart--itemCount – to update cart item count with ajax
+  .js-nav-hamburger – to toggle active hamburger class / open mobile menu
+  .js-cart-toggle – to open / close the minicart
+  .js-cart-outline – to show empty cart icon
+  .js-cart-filled – to show filled cart icon
+  .js-cart-itemCount – to update cart item count with ajax
 
 {% endcomment %}
 
@@ -17,7 +17,7 @@
     {% include 'inline-icon' with svg: 'icon-logo.svg', alt: shop_title, class: 'logo__main' %}
   </a>
 
-  <button class="hamburger js-nav--hamburger reset-input order-first z-40 md:hidden" type="button">
+  <button class="hamburger js-nav-hamburger reset-input order-first z-40 md:hidden" type="button">
     <span class="hamburger-box">
       <span class="hamburger-inner"></span>
     </span>
@@ -25,7 +25,7 @@
 
   <div class="nav--actions z-40 order-last flex flex-row items-center">
     {% if section.settings.show_currency %}
-      {% include 'currency-picker' with class: 'mr-12 hidden md:block' %}
+      {% include 'component-currency-picker' with class: 'mr-12 hidden md:block' %}
     {% endif %}
     {% if section.settings.show_search %}
       <a href="/search" class="inline-block w-24 mr-12 md:mr-16">
@@ -37,22 +37,22 @@
         {% include 'inline-icon' with svg: 'icon-account.svg' %}
       </a>
     {% endif %}
-    <a href="/cart" id="cart_button" class="js-cart--toggle inline-block w-24">
-      <span class="js-cart--outline {% if cart.item_count > 0 %} visually-hidden {% endif %}">
+    <a href="/cart" id="cart_button" class="js-cart-toggle inline-block w-24">
+      <span class="js-cart-outline {% if cart.item_count > 0 %} visually-hidden {% endif %}">
         {% include 'inline-icon' with svg: 'icon-cart-empty.svg' %}
       </span>
-      <span class="js-cart--filled {% if cart.item_count == 0 %} visually-hidden {% endif %}">
+      <span class="js-cart-filled {% if cart.item_count == 0 %} visually-hidden {% endif %}">
         {% include 'inline-icon' with svg: 'icon-cart-filled.svg' %}
       </span>
-      <span class="js-cart--itemCount hidden">{{ cart.item_count }}</span>
+      <span class="js-cart-itemCount hidden">{{ cart.item_count }}</span>
     </a>
   </div>
 
-  {% include 'header--nav' with menu: section.settings.main_menu %}
+  {% include 'header-nav' with menu: section.settings.main_menu %}
 
 </div>
 
-{% include 'header--mobile-menu' with link_list: section.settings.main_menu %}
+{% include 'header-mobile-menu' with link_list: section.settings.main_menu %}
 
 {% schema %}
   {
