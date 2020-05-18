@@ -6,3 +6,4 @@ import './modules/cart';
 import './components/currencyPicker';
 import './components/quantityPicker';
 import './components/addToCartForm';
+import './components/productSlideshow';
