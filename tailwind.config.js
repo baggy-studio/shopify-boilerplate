@@ -5,7 +5,7 @@ module.exports = {
     './sections/*.liquid',
     './snippets/*.liquid'
   ],
-  important: false,
+  important: true,
   theme: {
     fontFamily: {
       'body': ['"Roboto Mono"', 'sans-serif']
