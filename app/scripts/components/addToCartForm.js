@@ -1,4 +1,5 @@
 import currencyPicker from './currencyPicker';
+import filterImages from './productSlideshow';
 
 $(document).ready(function() {
   let
@@ -18,6 +19,7 @@ $(document).ready(function() {
       // When the product option has been selected, trigger our form:change event
       $form.trigger('form:change', [selectedVariant])
       window.history.replaceState(null, null, '?variant=' + selectedVariant.id)
+      filterImages.changeImage(selectedVariant)
     },
     getActiveVariant: function($form) {
       let 
