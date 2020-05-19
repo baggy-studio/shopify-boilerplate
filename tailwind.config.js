@@ -5,7 +5,7 @@ module.exports = {
     './sections/*.liquid',
     './snippets/*.liquid'
   ],
-  important: true,
+  important: false,
   theme: {
     fontFamily: {
       'body': ['"Roboto Mono"', 'sans-serif']
@@ -43,6 +43,10 @@ module.exports = {
       104: '6.5rem',
       128: '8rem',
       160: '10rem',
+      320: '20rem',
+      480: '30rem',
+      560: '35rem',
+      640: '40rem',
       'header': '6rem'
     },
     inset: {
@@ -62,6 +66,10 @@ module.exports = {
       104: '6.5rem',
       128: '8rem',
       160: '10rem',
+      320: '20rem',
+      480: '30rem',
+      560: '35rem',
+      640: '40rem',
       'header': '6rem'
     },
     screens: {
@@ -74,7 +82,8 @@ module.exports = {
   variants: {
     padding: ['responsive', 'first', 'last'],
     margin: ['responsive', 'first', 'last'],
-    borderWidth: ['responsive', 'first', 'last']
+    borderWidth: ['responsive', 'first', 'last'],
+    display: ['responsive', 'first', 'last']
   },
   plugins: [],
 }

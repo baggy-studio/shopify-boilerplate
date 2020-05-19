@@ -1,1 +1,7 @@
+.slick-track {
+  @apply flex;
+}
 
+.js-slideshow-nav .slick-track {
+  @apply flex-col;
+}

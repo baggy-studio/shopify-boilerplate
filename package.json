@@ -27,9 +27,12 @@
     "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {
+    "flickity": "^2.2.1",
+    "flickity-imagesloaded": "^2.0.0",
     "jquery": "^3.5.1",
+    "jquery-bridget": "^2.0.1",
     "lazysizes": "^5.2.0",
-    "slick-carousel": "^1.8.1",
+    "swiper": "^5.4.0",
     "tailwindcss": "^1.4.6"
   }
 }

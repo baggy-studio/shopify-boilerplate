@@ -4,12 +4,24 @@
   .js-atc-price – to update the price based on the selected variant
 
 {% endcomment %}
+{% comment %} <div class="swiper-container w-320 h-640 overflow-hidden">
+  <div class="swiper-wrapper">
+    {% for image in product.images %}
+      <div class="swiper-slide w-auto h-full flex items-center justify-center">
+        <img src="{{ image.src | img_url: 'large' }}">
+      </div>
+    {% endfor %}
+  </div>
 
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
+</div> {% endcomment %}
 
 <div class="flex flex-col lg:flex-row">
   <div class="w-full lg:w-1/2 flex">
     {% include 'product-slideshow' %}
   </div>
+
   <div class="w-full lg:w-1/2 px-24">
     <h1>{{ product.title }}</h1>
     <span class="js-atc-price" data-default-price="{{ product.price | money }}">

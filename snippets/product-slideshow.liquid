@@ -3,9 +3,9 @@
   {% assign has_multiple_images = true %}
 {% endif %}
 
-{% if has_multiple_images %}
-  <div class="js-slideshow-nav js-slideshow w-1/4 lg:w-1/5 h-full flex flex-col mr-16">
-    <div class="js-product-slides">
+{% comment %} {% if has_multiple_images %}
+  <div class="js-slideshow-nav w-1/4 lg:w-1/5 h-full flex flex-col mr-16">
+    <div class="js-product-thumbs">
       {% for image in product.images %}
         <div class="js-product-thumbnail">
           {% include 'responsive-image' with image: image, max_width: 120, max_height: 240, wrapper_class: 'mb-16 w-80 h-128 md:w-full md:h-auto', image_class: 'w-full h-full object-cover' %}
@@ -14,12 +14,36 @@
     </div>
   </div>
 {% endif %}
-<div class="js-product-slideshow js-slideshow {% if has_multiple_images %} w-3/4 lg:w-4/5 {% else %} w-full {% endif %} h-full">
-  <div class="js-product-slides w-full h-full">
+<div class="js-product-slideshow js-slideshow {% if has_multiple_images %} w-3/4 lg:w-4/5 {% else %} w-full {% endif %}">
+  {% for image in product.images %}
+    {% include 'responsive-image' with image: image, max_width: 600, max_height: 700, wrapper_class: 'w-full h-full', image_class: 'w-full object-cover' %}
+    <div class="carousel-cell" style="width: 100%; height: 640px; margin-right: 16px;">
+      <img src="{{ image.src | img_url: 'large' }}">
+    </div>
+  {% endfor %}
+</div> {% endcomment %}
+
+
+
+{% comment %} FLICKITY CODE {% endcomment %}
+{% comment %} <div class="js-product-slideshow overflow-hidden mx-auto w-full md:w-3/4 lg:w-full h-480 lg:h-640" data-flickity='{ "wrapAround": true, "setGallerySize": false, "imagesLoaded": true }'>
+  {% for image in product.images %}
+    <div class="js-product-slide w-full m-0 h-480 lg:h-640">
+     {% include 'responsive-image' with image: image, max_width: 600, max_height: 640, wrapper_class: 'w-full h-full', image_class: 'w-full h-full object-cover' %}
+      <img src="{{ image.src | img_url: 'large' }}" class="mx-auto">
+    </div>
+  {% endfor %}
+</div> {% endcomment %}
+
+<div class="swiper-container w-full h-full overflow-hidden relative">
+  <div class="swiper-wrapper">
     {% for image in product.images %}
-      <div class="js-product-image">
-        {% include 'responsive-image' with image: image, max_width: 600, max_height: 700, image_class: 'w-full h-full object-cover' %}
+      <div class="swiper-slide">
+        <img src="{{ image.src | img_url: '600x' }}">
       </div>
     {% endfor %}
   </div>
+
+  <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div>
 </div>
