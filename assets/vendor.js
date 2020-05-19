@@ -12423,8 +12423,8 @@ module.exports = g;
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/lilyfielding/Sites/shopify-boilerplate/app/scripts/vendor.js */"./app/scripts/vendor.js");
-module.exports = __webpack_require__(/*! /Users/lilyfielding/Sites/shopify-boilerplate/app/styles/app.scss */"./app/styles/app.scss");
+__webpack_require__(/*! /Users/lilyfielding/Sites/shopify-lm/app/scripts/vendor.js */"./app/scripts/vendor.js");
+module.exports = __webpack_require__(/*! /Users/lilyfielding/Sites/shopify-lm/app/styles/app.scss */"./app/styles/app.scss");
 
 
 /***/ })

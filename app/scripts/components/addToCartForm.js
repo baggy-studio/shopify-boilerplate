@@ -10,6 +10,14 @@ $(document).ready(function() {
   ;
 
   let addToCartForm = {
+    onLoad: function(event) {
+      let 
+        $form = $(addToCartFormSelector),
+        selectedVariant = addToCartForm.getActiveVariant($form)
+      ;
+
+      filterImages.changeImage(selectedVariant)
+    },
     onProductOptionChanged: function(event) {
       let 
         $form = $(this).closest(addToCartFormSelector),
@@ -97,6 +105,7 @@ $(document).ready(function() {
     init: function() {
       $(document).on('change', productOptionSelector, addToCartForm.onProductOptionChanged)
       $(document).on('form:change', addToCartFormSelector, addToCartForm.validate)
+      $(document).ready(addToCartForm.onLoad)
     }
   }
 
