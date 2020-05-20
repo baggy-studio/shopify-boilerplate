@@ -37,7 +37,7 @@
 {% endif %}
 
 <form id="add-to-cart-form" class="js-atc-form" action="/cart/add" method="post" enctype="multipart/form-data" data-variants="{{ variants_with_quantity_json | url_param_escape }}">
-  <div class="flex">
+  <div class="flex {% unless has_multiple_options %} justify-center {% endunless %}">
     {% if has_multiple_options or has_multiple_variants %}
       {% for option in product.options_with_values %}
         {% assign option_name = 'option' | append: option.position %}

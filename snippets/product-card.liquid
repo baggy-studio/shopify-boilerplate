@@ -1,0 +1,23 @@
+{% comment %} <div>
+  <a href="{{ product.url | within: collection }}">{{ product.title }}</a>
+  {{ product.price | money }}
+  {% unless product.available %}<br><strong>sold out</strong>{% endunless %}
+  <a href="{{ product.url | within: collection }}">
+    <img src="{{ product.featured_image.src | img_url: 'large' }}" alt="{{ product.featured_image.alt | escape }}">
+  </a>
+</div> {% endcomment %}
+
+<div class="relative w-full h-400 group overflow-y-hidden">
+  <a href="{{ product.url | within: collection }}" class="absolute w-full h-full inset-0">
+    {% comment %} {% include 'product-slideshow' with show_nav: false %} {% endcomment %}
+    {% include 'responsive-image' with image: product.featured_image, max_width: 500, max_height: 500, wrapper_class: 'w-full h-full', image_class: 'w-full h-full object-cover' %}
+  </a>
+  <div class="product--info z-10 absolute bottom-0 inset-x-0 w-full h-1/5 text-center bg-white p-16 border-std transform ease-in duration-300 translate-y-full group-hover:translate-y-0">
+    <h2 class="mb-16">{{ product.title }} – {{ product.price | money }}</h2>
+    {% if product.available %}
+      {% include 'component-add-to-cart-form' %}
+    {% else %}
+      <p>Sold Out</p>
+    {% endif %}
+  </div>
+</div>

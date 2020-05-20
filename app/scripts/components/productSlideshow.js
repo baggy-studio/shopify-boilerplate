@@ -1,20 +1,19 @@
 import Swiper from 'swiper'
 import 'swiper/css/swiper.min.css'
 
-let slideshowOptions = function() {
-  return {
-    loop: false,
-    slidesPerSlide: 1,
-    direction: 'horizontal',
-    effect: 'fade',
-    navigation: {
-      nextEl: '.swiper-button-next',
-      prevEl: '.swiper-button-prev'
-    }
+let slideshowOptions =  {
+  loop: false,
+  slidesPerSlide: 1,
+  direction: 'horizontal',
+  effect: 'fade',
+  navigation: {
+    nextEl: '.swiper-button-next',
+    prevEl: '.swiper-button-prev'
   }
 }
 
-let productSlideshow = new Swiper ('.js-product-slideshow', slideshowOptions())
+
+let productSlideshow = new Swiper ('.js-product-slideshow', slideshowOptions)
 
 
 // This will match the selected option to its corresponding product image,
@@ -28,8 +27,6 @@ const filterImages = {
     // Choose which option to filter by (option1, option2, or option3)
     let option = selectedVariant.option1
 
-    console.log(selectedVariant)
-
     $('.js-product-slide').each(function() {
       let 
         $img = $(this).find('img'),
@@ -41,18 +38,21 @@ const filterImages = {
 
       if(src.includes(option.toLowerCase()) || src.includes('gallery')) {
         $(this).attr('data-show', true)
-        filterImages.filter()
+        // filterImages.filter()
+        console.log(productSlideshow)
       } else {
         $(this).attr('data-show', false)
-        filterImages.filter()
+        // filterImages.filter()
       }
     })
+
+    
   },
   filter: function() {
     $(".swiper-slide").not("[data-show='"+true+"']").addClass("non-swiper-slide").removeClass("swiper-slide").hide();
     $("[data-color='"+false+"']").removeClass("non-swiper-slide").addClass("swiper-slide").attr("style", null).show();
-    productSlideshow.destroy();
-    productSlideshow = new Swiper('.js-product-slideshow', slideshowOptions())
+    productSlideshow.destroy()
+    productSlideshow = new Swiper('.js-product-slideshow', slideshowOptions)
 
     if($('.swiper-slide').length === 1) {
       $('.js-slide-nav').hide()
@@ -63,7 +63,7 @@ const filterImages = {
   unFilter: function() {
     $("[data-show]").removeClass("non-swiper-slide").addClass("swiper-slide").show();
     productSlideshow.destroy()
-    productSlideshow = new Swiper('.js-product-slideshow', slideshowOptions())
+    productSlideshow = new Swiper('.js-product-slideshow', slideshowOptions)
   }
 }
 

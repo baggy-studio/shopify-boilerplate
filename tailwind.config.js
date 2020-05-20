@@ -44,6 +44,7 @@ module.exports = {
       128: '8rem',
       160: '10rem',
       320: '20rem',
+      400: '25rem',
       480: '30rem',
       560: '35rem',
       640: '40rem',
@@ -57,6 +58,7 @@ module.exports = {
       16: '1rem',
       24: '1.5rem',
       32: '2rem',
+      40: '2.5rem',
       48: '3rem',
       64: '4rem',
       72: '4.5rem',
@@ -67,6 +69,7 @@ module.exports = {
       128: '8rem',
       160: '10rem',
       320: '20rem',
+      400: '25rem',
       480: '30rem',
       560: '35rem',
       640: '40rem',
@@ -83,7 +86,8 @@ module.exports = {
     padding: ['responsive', 'first', 'last'],
     margin: ['responsive', 'first', 'last'],
     borderWidth: ['responsive', 'first', 'last'],
-    display: ['responsive', 'first', 'last']
+    display: ['responsive', 'first', 'last'],
+    translate: ['responsive', 'hover', 'group-hover']
   },
   plugins: [],
 }
