@@ -6,8 +6,7 @@
 <div class="swiper-container js-product-slideshow w-full h-full">
   <div class="swiper-wrapper">
     {% for image in product.images %}
-      {% comment %} Add data-show="true" attribute if using filtering {% endcomment %}
-      <div class="swiper-slide js-product-slide" data-show="true">
+      <div class="swiper-slide js-product-slide">
         {% include 'responsive-image' with image: image, max_width: 600, max_height: 640, wrapper_class: 'w-3/4 mx-auto h-full md:w-1/2 md:h-480 lg:w-full lg:h-full', image_class: 'w-full h-full object-cover' %}
       </div>
     {% endfor %}

@@ -38,11 +38,10 @@ const filterImages = {
 
       if(src.includes(option.toLowerCase()) || src.includes('gallery')) {
         $(this).attr('data-show', true)
-        // filterImages.filter()
-        console.log(productSlideshow)
+        filterImages.filter()
       } else {
         $(this).attr('data-show', false)
-        // filterImages.filter()
+        filterImages.filter()
       }
     })
 
