@@ -1,0 +1,5 @@
+let productRecommendations = {
+  loadProducts: function() {
+    
+  }
+}

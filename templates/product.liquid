@@ -20,4 +20,8 @@
   </div>
 </div>
 
-{% include 'product-recommendations' %}
+{% if recommendations.products_count > 0 %}
+  {% include 'product-recommendations' %}
+{% endif %}
+
+
