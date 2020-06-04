@@ -17,7 +17,6 @@ Currency.moneyFormats[shopCurrency].money_format = moneyFormat;
 let
   defaultCurrency = $('body').attr('data-default-currency'),
   cookieCurrency = Currency.cookie.read(),
-  // moneySpanSelector = 'span.money',
   currencyPickerSelector = '[name=currencies]',
   activeCurrencySelector = '.js-currency-active',
   currencyNoteSelector = '.js-cart-currencyNote'
