@@ -87,7 +87,7 @@ $(document).ready(function() {
         $id.val(selectedVariant.id)
         $addToCartButton.prop('disabled', false)
         $addToCartButton.removeClass('disabled')
-        // // Change this if using different cart button copy
+        // Change this if using different cart button copy
         $addToCartButton.text('Add to Cart')
         window.history.replaceState(null, null, '?variant=' + selectedVariant.id)
       }

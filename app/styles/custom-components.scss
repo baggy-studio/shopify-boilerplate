@@ -1,0 +1,26 @@
+.product-card {
+  @apply h-400;
+  @apply max-w-xs;
+}
+
+.product-card__link {
+  @apply flex;
+  @apply flex-col;
+  @apply h-full;
+}
+
+.product-card__atc {
+  @apply z-10;
+  @apply absolute;
+  @apply bottom-0;
+  @apply inset-x-0;
+  @apply w-full;
+  @apply text-center;
+  @apply bg-white;
+  @apply p-16;
+  @apply border-std;
+  @apply transform;
+  @apply ease-in;
+  @apply duration-300;
+  @apply translate-y-full;
+}
