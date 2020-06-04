@@ -1,3 +1,7 @@
+import currencyPicker from '../components/currencyPicker';
+
+window.moneyFormat = $('body').attr('data-money-format').replace(/['"]+/g, '')
+
 $(document).ready(function() {
   let productRecsSelector = '.product-recommendations'
 
@@ -10,14 +14,14 @@ $(document).ready(function() {
         request = baseUrl + '.json?product_id=' + productId + '&limit=' + limit
       ;
 
-      console.log(productId)
-
       $.ajax({
         type: 'GET',
         url: request,
         success: function(data) {
           const {products} = data
           productRecommendations.renderProduct($section, products)
+          // currencyPicker.init($section)
+          console.log($section)
         },
         error: function() {
           productRecommendations.onError($section)
@@ -34,12 +38,11 @@ $(document).ready(function() {
           '<img class="responsive-image__image lazyload w-full h-full object-cover" src="' + product.media[0].src +'" data-src="' + product.media[0].src + '" data-widths="180 360 540 720 900 1080 1296 1512 1728 1944 2160 2376 2592 2808 3024" data-aspectratio="' + product.media[0].aspect_ratio + '" data-sizes="auto" tabindex="-1" alt="' + product.media[0].alt + '">',
           '</div>',
           '</div>',
-          '<h2 class="mt-16 text-center">' + product.title + ' – <span class="money">' + product.price + '</span></h2>',
+          '<h2 class="mt-16 text-center">' + product.title + ' – <span class="money">' + product.price  + '</span></h2>',
           '</a>',
           '</div>'
         ].join('')
       })
-      console.log($section)
       $section.append(html)
     },
     onError: function($section) {

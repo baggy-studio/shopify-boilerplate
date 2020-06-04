@@ -17,14 +17,16 @@ Currency.moneyFormats[shopCurrency].money_format = moneyFormat;
 let
   defaultCurrency = $('body').attr('data-default-currency'),
   cookieCurrency = Currency.cookie.read(),
-  moneySpanSelector = 'span.money',
+  // moneySpanSelector = 'span.money',
   currencyPickerSelector = '[name=currencies]',
   activeCurrencySelector = '.js-currency-active',
   currencyNoteSelector = '.js-cart-currencyNote'
 ;
 
 let currencyPicker = {
-  loadCurrency: function() {
+  loadCurrency: function($parent) {
+    let moneySpanSelector = $parent ? $($parent).attr("class") + ' span.money' : 'span.money'
+
     /* Fix for customer account pages */
     $(moneySpanSelector + ' ' + moneySpanSelector).each(function() {
       $(this).parents(moneySpanSelector).removeClass('money');
@@ -96,8 +98,8 @@ let currencyPicker = {
       currencyPicker.setCurrencyText();
     }
   },
-  init: function() {
-    currencyPicker.loadCurrency();
+  init: function($parent) {
+    currencyPicker.loadCurrency($parent);
 
     $(document).on('change', currencyPickerSelector, currencyPicker.onCurrencyChanged);
   }
